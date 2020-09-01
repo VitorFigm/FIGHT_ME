@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/resources/css/train.css">
+</head>
+<body>
+
+
+
+<canvas id="canvas"> </canvas>
+<script>
+    function canvas_init(){
+        let canvas = document.getElementById('canvas')
+        canvas.width = window.innerWidth
+        canvas.height = window.innerHeight
+    }
+    canvas_init()
+</script>
+
+
+</body>
+
+<!----game logic---->
+<script type="module">
+    
+    //events
+    import {key_events} from '/modules.js'
+    key_events()
+
+    //creating chars
+    import {Player} from '/modules.js'
+    let player = new Player()
+
+    import {Enemy} from '/modules.js'
+    let enemy = new Enemy()
+
+    ///game logic
+    import {Fight} from '/modules.js'
+    let fight = new Fight(player,enemy)
+
+
+
+    ///play fade animation
+    document.getElementsByTagName('body')[0].style.display = "flex" 
+   
+
+</script>
+
+
+</html>

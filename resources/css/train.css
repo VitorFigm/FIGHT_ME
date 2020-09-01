@@ -1,0 +1,22 @@
+body{
+    display: none;
+    margin: 0px;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    animation: fade 1s;
+    overflow: hidden;
+}
+canvas{
+    width: 100vw;
+    height: 100vh;
+}
+@keyframes fade{
+    0%{
+        opacity: 0;
+    }
+}
+
+img{
+    transform: scaleX(-1);
+}
