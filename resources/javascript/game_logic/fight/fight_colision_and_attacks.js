@@ -3,24 +3,33 @@ export function fight_P2P_colision_attack_loop(obj1,obj2){  ///colision and atta
 
     //colision functions
     let colide = colision(obj1,obj2)
-    console.log(colide.check)
-    ///go through block
-    if(colide.check){
-        let stop = (obj,axis) => {
-            obj['V'+axis] = 0
-            obj['A'+axis] = 0
-        }
 
+    ///go through block
+
+    if(colide.check){
         switch(colide.Ytype){
             case "1headOf2":
-                stop(obj1,'y')
+                obj1.block_y = obj1.y
             break
             case "2headOf1":
-                stop(obj2,'y')
+                obj2.block_y = obj2.y
             break
             case "normal":
-                stop(obj1,'x')
-                stop(obj2,'x')
+                let f = (obj)=>{
+                    obj.Vx = 0
+                    obj.Ax = 0
+                    obj.fric = 0
+                }
+                f(obj1)
+                f(obj2)     
+                switch(colide.Xtype){
+                    case 'right':
+                        obj1.x = obj2.x - obj1.width
+                    break
+                    case 'left':
+                        obj1.x = obj2.x + obj2.width
+                    break                        
+                }            
         }
     }
 

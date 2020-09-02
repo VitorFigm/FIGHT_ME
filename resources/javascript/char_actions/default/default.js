@@ -8,7 +8,7 @@ export const Default ={
     action_of_key:{
         68:'right',
         65:'left',
-        87:'up',
+        87:'jump',
         74:'weak_punch',
         73:'strong_punch',
     },  
@@ -24,7 +24,7 @@ export const Default ={
         
 
         if( ev=="press" &&  conds[0] ){
-            obj.anim_request = "_walk"
+            obj.anim_request = undefined
         }
         if(ev=="release" && conds[1]){
             obj.Ax =0 
@@ -42,29 +42,8 @@ export const Default ={
         obj.actions.move(obj, 0.8, -1 ,ev)
     },
     ////////
-    up: (obj)=> {
-        if(!obj.jumping){
-            obj.actions.jump(obj)
-        }
-    },
-    ////////
     jump:(obj) =>{
-            obj.jumping = true;
-            if(obj.y!=0 || obj.y==0 && !obj.jump_falling ){ ///cases when it changes position
-                //jumping
-                if(obj.y >=-obj.jump_limit && !obj.jump_falling)obj.y-=1.5;
-                //falling
-                if(obj.y==-obj.jump_limit) obj.jump_falling = true 
-                if(obj.jump_falling)  obj.y+=1.5;
-            }
-            //loop
-            if(obj.y!=0)window.requestAnimationFrame(  ()=>obj.actions.jump(obj)  )
-
-            //reset
-            if(obj.y==0 && obj.jump_falling ) {
-                obj.jump_falling = false;
-                obj.jumping = false;
-            }
+        obj.Vy= -1
     },
     weak_punch: (obj) =>{
         let cond = anim_conds(obj,"weak_punch",'max')
@@ -133,7 +112,7 @@ function anim_conds(obj,anim,hierarchy,direction){ ///conditions pattern and def
 
 function acelerate(obj,a,limit,direction){
     obj.fric =0;
-    obj.Vx += a*direction   ///acelerates
+    obj.Ax = a*direction   ///acelerates
     if(Math.abs(obj.Vx) > limit)obj.Vx = limit*direction; ///limits speed
 }
 

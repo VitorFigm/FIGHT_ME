@@ -35,8 +35,8 @@ export {keyboard,key_events};
     import {colision} from "/resources/javascript/game_logic/colisions.js"
     export {colision}
 
-    import {velocity_logic} from "/resources/javascript/game_logic/position_function.js"
-    export {velocity_logic}
+    import {velocity_logic,posChange} from "/resources/javascript/game_logic/position_function.js"
+    export {velocity_logic,posChange}
    
 
     import {canvas_draw} from "/resources/javascript/game_logic/draw_in_canvas.js"

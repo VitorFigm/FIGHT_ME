@@ -15,10 +15,6 @@ export class Char{
     fric = 0
 
     anim_hierarchy = 0; //the hierarchy of the animation that is playing, the higher hierarchy can block the playing  of lower hierarchy animations 
-    ///jump controll
-    jumping = false;
-    jump_limit = 60;
-    jump_falling = false;
 
     constructor(args, pattern='Default'){
         let default_args = {x:0 , y:0 , direction:1 , width:10 , height:40, can_move:true}

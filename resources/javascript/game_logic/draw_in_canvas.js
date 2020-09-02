@@ -17,7 +17,7 @@ function draw_char(context,obj,ground_y){
     
     
 
-    let obj_y = vh_px( ground_y + obj.y - obj.height/2  )  ////make the coordinate of y of object reference point in the bootom of his foot
+    let obj_y = vh_px( ground_y + obj.y - obj.height  )  ////make the coordinate of y of object reference point in the bootom of his foot
     
     let canvas_args = [ obj_x, obj_y, vw_px(obj.width), vh_px(obj.height) ]
     context.drawImage(...get_sprites_args(obj)  , ...canvas_args)
