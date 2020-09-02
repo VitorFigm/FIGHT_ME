@@ -22,9 +22,12 @@ export class Player extends Char{
             for(let i in keyboard)
             ///if key of the action i is pressed, calls the funtion of that action
             if(keyboard[i]!=undefined){
+
                 let action = this.actions.action_of_key[i] ///gets the name of the action of the key
                 if(action!=undefined)
                 this.actions[action]( this , keyboard[i] )  //calls the function of the action
+                
+                
                 if(keyboard[i] =="release")keyboard[i] = undefined
             }
         }

@@ -12,12 +12,13 @@
 
 <canvas id="canvas"> </canvas>
 <script>
-    function canvas_init(){
+    function canvas_resize(){
         let canvas = document.getElementById('canvas')
         canvas.width = window.innerWidth
         canvas.height = window.innerHeight
     }
-    canvas_init()
+    canvas_resize()
+    window.onresize = canvas_resize; 
 </script>
 
 

@@ -8,7 +8,7 @@ export class Enemy extends Char{
     }
     constructor(args,pattern='Default'){
 
-        let super_default_args = {x:40 , direction:-1}
+        let super_default_args = {x:80 , direction:-1}
 
         super({...super_default_args,...args},pattern)
     }

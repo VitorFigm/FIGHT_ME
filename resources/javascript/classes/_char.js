@@ -5,9 +5,16 @@ export class Char{
     damage = 0;
     hp= 100; 
     mp = 100;
-    Vx = 0; //velocity
+    //velocity
+    Vx = 0; 
     Vy = 0;
+    //aceleration
+    Ax=0
+    Ay =0
+    //friction
+    fric = 0
 
+    anim_hierarchy = 0; //the hierarchy of the animation that is playing, the higher hierarchy can block the playing  of lower hierarchy animations 
     ///jump controll
     jumping = false;
     jump_limit = 60;

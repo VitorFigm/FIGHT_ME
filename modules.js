@@ -4,8 +4,13 @@ import {keyboard,key_events} from "/resources/javascript/keyboard.js"
 export {keyboard,key_events};
 
     ///char_actions
-    import {Default} from "/resources/javascript/char_actions/default.js"
-    export {Default};
+        //default
+        import {Default} from "/resources/javascript/char_actions/default/default.js"
+        export {Default};
+
+        import {default_loading_all_sprites} from "/resources/javascript/char_actions/default/default_animations.js"
+        export {default_loading_all_sprites};
+        
     import {actions_obj} from "/resources/javascript/char_actions/__main_object.js"
     export {actions_obj};
     
@@ -26,14 +31,21 @@ export {keyboard,key_events};
     ///game_logic
     import {arena_limit} from "/resources/javascript/game_logic/arena_limit.js"
     export {arena_limit}
-    
-    import {P2P_colision_attack_loop} from "/resources/javascript/game_logic/colision_and_attacks.js"
-    export {P2P_colision_attack_loop}
+
+    import {colision} from "/resources/javascript/game_logic/colisions.js"
+    export {colision}
+
+    import {velocity_logic} from "/resources/javascript/game_logic/position_function.js"
+    export {velocity_logic}
+   
 
     import {canvas_draw} from "/resources/javascript/game_logic/draw_in_canvas.js"
     export {canvas_draw}
 
-        ///main
-        import {Fight} from "/resources/javascript/game_logic/main/fight.js"
+        ///fight
+        import {fight_P2P_colision_attack_loop} from "/resources/javascript/game_logic/fight/fight_colision_and_attacks.js"
+        export {fight_P2P_colision_attack_loop}
+
+        import {Fight} from "/resources/javascript/game_logic/fight/fight.js"
         export {Fight}
 

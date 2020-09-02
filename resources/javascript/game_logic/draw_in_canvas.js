@@ -7,7 +7,7 @@ export function canvas_draw(obj1,obj2,canvas_id,ground_y){
     draw_char(context,obj2,ground_y)
 
 }
-
+ 
 
 function draw_char(context,obj,ground_y){
     ///invert char if needed
@@ -17,7 +17,7 @@ function draw_char(context,obj,ground_y){
     
     
 
-    let obj_y = vh_px( ground_y + obj.y  )  ////make the coordinate of y of object reference point in the bootom of his foot
+    let obj_y = vh_px( ground_y + obj.y - obj.height/2  )  ////make the coordinate of y of object reference point in the bootom of his foot
     
     let canvas_args = [ obj_x, obj_y, vw_px(obj.width), vh_px(obj.height) ]
     context.drawImage(...get_sprites_args(obj)  , ...canvas_args)
@@ -29,12 +29,18 @@ function draw_char(context,obj,ground_y){
 
 
 function get_sprites_args(obj){
-
     if(obj.frame_control==undefined)obj.frame_control=1 //starts animation
    
     ///request control, will be set undefined in the end of the function if stand_anim needs to be played
     if(obj.anim_request==undefined)obj.anim_request="stand_anim"
-
+    
+    if(obj.anim_request[0]=="_"){  // '_' in start of string indicates a new request, so the animation frame count resets.
+        //removing "_"
+        let to_array = obj.anim_request.split('')
+        to_array.splice(0,1)
+        obj.anim_request = to_array.join("")
+        obj.frame_control=1
+    }
     ///getting properties
     let sprite_ref = obj.sprites[obj.anim_request]
 
@@ -67,6 +73,15 @@ function get_sprites_args(obj){
     if(obj.frame_control>sprite_ref.frames){
         obj.frame_control=undefined
         obj.anim_request=undefined
+        obj.anim_hierarchy =0;
+    }
+    ///play requested function
+    let my_function = obj.play_function
+    if(my_function!=undefined){
+        let _in = obj.play_function.in
+        if( _in == "end") _in=sprite_ref.frames
+
+        if(obj.frame_control==_in) my_function.get()
     }
     
     ///undefined plays stand_anim
@@ -76,6 +91,8 @@ function get_sprites_args(obj){
     return [img,x,y,width,height] //arg 
 
 }
+
+
 
 ///units convertion
 
