@@ -16,15 +16,15 @@ export const Default ={
        
         let conds = anim_conds(obj,"walk",1)
 
-        acelerate(obj,a,v_limit,direction)
+        
         
         if(conds[1]){
-            
+            acelerate(obj,a,v_limit,direction)
         }
         
 
         if( ev=="press" &&  conds[0] ){
-            obj.anim_request = undefined
+            obj.anim_request = "_walk"
         }
         if(ev=="release" && conds[1]){
             obj.Ax =0 
@@ -43,11 +43,12 @@ export const Default ={
     },
     ////////
     jump:(obj) =>{
-        obj.Vy= -1
+        obj.Vy= -4
     },
     weak_punch: (obj) =>{
         let cond = anim_conds(obj,"weak_punch",'max')
         if( cond ){
+            obj.Ax = 0
             obj.Vx = 0.2    
             obj.anim_request = "_weak_punch"
             

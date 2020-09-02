@@ -13,8 +13,9 @@ function draw_char(context,obj,ground_y){
     ///invert char if needed
     context.save()
     context.scale(obj.direction,1)
-    let obj_x = vw_px(obj.x)*obj.direction
-    
+    let fix_position = obj.width/2 - (obj.direction*(obj.width/2))  /// put the same reference point even when we invert canvas.
+   
+    let obj_x = vw_px(obj.x+fix_position)*obj.direction
     
 
     let obj_y = vh_px( ground_y + obj.y - obj.height  )  ////make the coordinate of y of object reference point in the bootom of his foot

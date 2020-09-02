@@ -19,7 +19,7 @@ export function colision(obj1,obj2){ ///check colisions
 
     if(colision.check){
         ////colision Ytype
-        let head_size = 10
+        let head_size = 5
         let a_inheadOf_b = (a,b) =>{
             return a.y+a.height >=  b.y && a.y+a.height <= b.y+head_size
         }

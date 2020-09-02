@@ -1,4 +1,4 @@
-let gravity = 0.1
+let gravity = 0.3
 
 export function velocity_logic(obj){
     let def_vel = (axis)=>{
