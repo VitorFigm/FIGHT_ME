@@ -2,7 +2,7 @@ import {actions_obj} from "/modules.js"
 
 export class Char{
     //fight control
-    damage = 0;
+    damage;
     hp= 100; 
     mp = 100;
     //velocity
@@ -13,6 +13,9 @@ export class Char{
     Ay =0
     //friction
     fric = 0
+
+    ///anim control
+    inDraw_play; ///in the draw_in_canvas module, this variable request to call functions in a specific frame of an animation
 
     anim_hierarchy = 0; //the hierarchy of the animation that is playing, the higher hierarchy can block the playing  of lower hierarchy animations 
 

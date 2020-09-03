@@ -1,4 +1,4 @@
-export function colision(obj1,obj2){ ///check colisions
+export function colision(obj1,obj2,errorx,errory=0){ ///check if colisions blocks intect
     let colision = {}
     ///geometric logic
     let a_in_b  = (a, b, axis , property, error )=>{ ///check the interval of a in axis intersects interval of b in axis
@@ -7,9 +7,9 @@ export function colision(obj1,obj2){ ///check colisions
         return cond1 || cond2
     }
     let args_x = ['x','width']
-    let colisionX_cond = a_in_b( obj1 , obj2 , ...args_x, 0.001 ) || a_in_b( obj2 , obj1 , ...args_x, 0.001 )
+    let colisionX_cond = a_in_b( obj1 , obj2 , ...args_x, errorx ) || a_in_b( obj2 , obj1 , ...args_x, errorx )
     let args_y = ['y','height']
-    let colisionY_cond = a_in_b( obj1 , obj2 , ...args_y, 0 ) || a_in_b( obj2 , obj1 , ...args_y, 0 )
+    let colisionY_cond = a_in_b( obj1 , obj2 , ...args_y, errory ) || a_in_b( obj2 , obj1 , ...args_y, errory )
 
     ///colision check
     if( colisionX_cond && colisionY_cond ){colision.check=true;} ///Check if there is a colision

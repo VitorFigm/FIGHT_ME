@@ -24,7 +24,7 @@ export const Default ={
         
 
         if( ev=="press" &&  conds[0] ){
-            obj.anim_request = "_walk"
+            obj.anim_request = undefined
         }
         if(ev=="release" && conds[1]){
             obj.Ax =0 
@@ -36,7 +36,7 @@ export const Default ={
     },
     right: (obj,ev) =>{
         obj.actions.move(obj, 0.8, 1 ,ev)
-    },
+    },  
     ////////
     left: (obj,ev) =>{
         obj.actions.move(obj, 0.8, -1 ,ev)
@@ -49,40 +49,31 @@ export const Default ={
         let cond = anim_conds(obj,"weak_punch",'max')
         if( cond ){
             obj.Ax = 0
-            obj.Vx = 0.2    
+            obj.Vx = 0.3    
             obj.anim_request = "_weak_punch"
-            
-            obj.play_function = {}
-            obj.play_function.in = "end"
-            obj.play_function.get = ()=>{
-                obj.Vx = 0
+            obj.inDraw_play = []
+            obj.inDraw_play[0] = {
+                in:20,
+                func:  ()=>{
+                    obj.damage = 5
+                }
             }
-
+            obj.inDraw_play[1] = {
+                in:"end",
+                func:  ()=>{
+                    obj.Vx = 0
+                    
+                    obj.damage = undefined
+                }
+            }
         }
-
-        if(obj.damage==0){
-            obj.damage = 4
-            
-        }
-        
     },
     strong_punch: (obj) =>{
         let cond = anim_conds(obj,"strong_punch",'max')
         if( cond ){
             obj.Vx = obj.Vx*0.6
             obj.anim_request = "_strong_punch"
-            
-            obj.play_function = {}
-            obj.play_function.in = "end"
-            obj.play_function.get = ()=>{
-                obj.Vx = 0
-            }
 
-        }
-
-        if(obj.damage==0){
-            obj.damage = 4
-            
         }
         
     }, 

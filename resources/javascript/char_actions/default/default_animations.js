@@ -46,9 +46,9 @@ export function default_loading_all_sprites(){///to load sprites used in actions
         },
         damage:{
             img:load_sprite("/resources/chars/Default/damage_3x20x60.svg"),
-            frames:40,
-            rows:4,
-            cols:13,
+            frames:60,
+            rows:3,
+            cols:20,
         },
         walk:{
             img:load_sprite("/resources/chars/Default/walkcicle_6x15x90.svg"),

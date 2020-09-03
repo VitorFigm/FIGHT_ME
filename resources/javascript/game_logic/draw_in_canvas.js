@@ -74,15 +74,16 @@ function get_sprites_args(obj){
     if(obj.frame_control>sprite_ref.frames){
         obj.frame_control=undefined
         obj.anim_request=undefined
-        obj.anim_hierarchy =0;
+        obj.anim_hierarchy =0;  
+        obj.inDraw_play = undefined
     }
     ///play requested function
-    let my_function = obj.play_function
-    if(my_function!=undefined){
-        let _in = obj.play_function.in
-        if( _in == "end") _in=sprite_ref.frames
-
-        if(obj.frame_control==_in) my_function.get()
+    if(obj.inDraw_play !=undefined){
+        for(let request of obj.inDraw_play){
+            let cond1 = ( request.in == "end" )&&( obj.frame_control == sprite_ref.frames )
+            let cond2 = obj.frame_control == request.in
+            if( cond1 || cond2 ) request.func()
+        }
     }
     
     ///undefined plays stand_anim
