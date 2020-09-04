@@ -49,3 +49,6 @@ export {keyboard,key_events};
         import {Fight} from "/resources/javascript/game_logic/fight/fight.js"
         export {Fight}
 
+        import {change_dir} from "/resources/javascript/game_logic/fight/change_direction.js"
+        export {change_dir}
+

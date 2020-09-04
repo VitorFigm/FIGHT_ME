@@ -4,7 +4,6 @@ export class Char{
     //fight control
     damage;
     hp= 100; 
-    mp = 100;
     //velocity
     Vx = 0; 
     Vy = 0;
@@ -15,7 +14,7 @@ export class Char{
     fric = 0
 
     ///anim control
-    inDraw_play; ///in the draw_in_canvas module, this variable request to call functions in a specific frame of an animation
+    inDraw_play ///in the draw_in_canvas module, this variable request to call functions in a specific frame of an animation
 
     anim_hierarchy = 0; //the hierarchy of the animation that is playing, the higher hierarchy can block the playing  of lower hierarchy animations 
 

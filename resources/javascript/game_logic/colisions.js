@@ -1,4 +1,4 @@
-export function colision(obj1,obj2,errorx,errory=0){ ///check if colisions blocks intect
+export function colision(obj1,obj2,errorx,head_size=5,errory=0){ ///check if colisions blocks intect
     let colision = {}
     ///geometric logic
     let a_in_b  = (a, b, axis , property, error )=>{ ///check the interval of a in axis intersects interval of b in axis
@@ -19,7 +19,6 @@ export function colision(obj1,obj2,errorx,errory=0){ ///check if colisions block
 
     if(colision.check){
         ////colision Ytype
-        let head_size = 5
         let a_inheadOf_b = (a,b) =>{
             return a.y+a.height >=  b.y && a.y+a.height <= b.y+head_size
         }

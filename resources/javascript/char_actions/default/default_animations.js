@@ -36,13 +36,13 @@ export function default_loading_all_sprites(){///to load sprites used in actions
             img:load_sprite("/resources/chars/Default/jumpinair_4x10x40.svg"),
             frames:40,
             rows:4,
-            cols:13,
+            cols:10,
         },
         air_kick:{
             img:load_sprite("/resources/chars/Default/airkick_4x14x50.svg"),
-            frames:40,
+            frames:50,
             rows:4,
-            cols:13,
+            cols:14,
         },
         damage:{
             img:load_sprite("/resources/chars/Default/damage_3x20x60.svg"),

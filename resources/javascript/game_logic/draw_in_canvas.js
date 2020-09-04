@@ -74,7 +74,7 @@ function get_sprites_args(obj){
     if(obj.frame_control>sprite_ref.frames){
         obj.frame_control=undefined
         obj.anim_request=undefined
-        obj.anim_hierarchy =0;  
+        obj.anim_hierarchy = 0;
         obj.inDraw_play = undefined
     }
     ///play requested function

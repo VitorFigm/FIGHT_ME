@@ -8,7 +8,6 @@ export function key_events(){
     }
 
     window.onkeyup = (e)=>{
-        
         keyboard[e.keyCode] = "release"
     }
  
