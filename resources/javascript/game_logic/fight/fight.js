@@ -5,6 +5,7 @@ import {velocity_logic,posChange} from '/modules.js'
 import {change_dir} from '/modules.js'
 
 export class Fight{
+
     loop = (obj1,obj2,args)=>{
         ///player loop logic
         obj1.loop_logic()
@@ -19,17 +20,15 @@ export class Fight{
         velocity_logic(obj1,0)
         velocity_logic(obj2,0)
 
+        fight_P2P_colision_attack_loop(obj1,obj2)
         posChange(obj1)
         posChange(obj2)
-
-        fight_P2P_colision_attack_loop(obj1,obj2)
         
         ///draw  (needs to be the last loop)
-        canvas_draw(obj1,obj2 ,args.canvas_id , args.ground_y)
+        canvas_draw(obj1,obj2 ,args.canvas_id , args.ground_y, this)
 
         change_dir(obj1,obj2)
         requestAnimationFrame( ()=>{this.loop(obj1,obj2,args)} )
-
     }
 
     constructor(obj1, obj2 , args={canvas_id:"canvas" , ground_y:80,arena_width:100}){

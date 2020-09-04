@@ -1,8 +1,11 @@
-export function canvas_draw(obj1,obj2,canvas_id,ground_y){
+export function canvas_draw(obj1,obj2,canvas_id,ground_y,fight){
     let canvas = document.getElementById(canvas_id)
     let context = canvas.getContext('2d')
 
     context.clearRect(0, 0, canvas.width, canvas.height)
+    if(fight!=undefined){
+        show_hp_bars(obj1,obj2,context)
+    }
     draw_char(context,obj1,ground_y)
     draw_char(context,obj2,ground_y)
 
@@ -93,7 +96,20 @@ function get_sprites_args(obj){
     return [img,x,y,width,height] //arg 
 
 }
+function show_hp_bars(obj1,obj2,context, width=40, height=5, margin=5){
+    ///red part
+    context.fillStyle = "#FF3333";
+    context.fillRect( vw_px(margin), vh_px(margin) , vw_px(width), vh_px(height) )
+    context.fillRect( vw_px(100-margin-width), vh_px(margin) , vw_px(width), vh_px(height) )
 
+    ///green percentual
+    context.fillStyle = "#66CC33";
+    let hp_width1 = width*(obj1.hp/100)
+    let hp_width2 = width*(obj2.hp/100)
+    context.fillRect( vw_px(margin), vh_px(margin) , vw_px(hp_width1), vh_px(height) )
+    context.fillRect( vw_px(100-margin-hp_width2), vh_px(margin) , vw_px(hp_width2), vh_px(height) )
+
+}
 
 
 ///units convertion

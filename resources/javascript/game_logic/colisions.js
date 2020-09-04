@@ -1,36 +1,26 @@
-export function colision(obj1,obj2,errorx,head_size=5,errory=0){ ///check if colisions blocks intect
-    let colision = {}
-    ///geometric logic
-    let a_in_b  = (a, b, axis , property, error )=>{ ///check the interval of a in axis intersects interval of b in axis
-        let cond1 = a[axis] >= b[axis]+error && a[axis] <= b[axis]+b[property]-error
-        let cond2 =  a[axis]+a[property] >= b[axis]+error && a[axis]+a[property] <= b[axis]+b[property]-error
-        return cond1 || cond2
-    }
-    let args_x = ['x','width']
-    let colisionX_cond = a_in_b( obj1 , obj2 , ...args_x, errorx ) || a_in_b( obj2 , obj1 , ...args_x, errorx )
-    let args_y = ['y','height']
-    let colisionY_cond = a_in_b( obj1 , obj2 , ...args_y, errory ) || a_in_b( obj2 , obj1 , ...args_y, errory )
+export function colision(obj1,obj2,errorx,errory=0){ ///check if colisions blocks intersects
+    let will_intersect = (axis,property,error)=>{ 
+        ///points
+        ///obj1
+        let pt1i = obj1[axis]
+        let pt1f = obj1[axis]+obj1["V"+axis]
 
-    ///colision check
-    if( colisionX_cond && colisionY_cond ){colision.check=true;} ///Check if there is a colision
-    else colision.check=false
+        let pt2i = obj1[axis]+obj1[property]
+        let pt2f = obj1[axis]+obj1[property]+obj1["V"+axis]
 
-    ///types of colision with obj1 as reference
+        ///obj2
+        let pt3i = obj2[axis]
+        let pt3f = obj2[axis]+obj2["V"+axis]
 
-    if(colision.check){
-        ////colision Ytype
-        let a_inheadOf_b = (a,b) =>{
-            return a.y+a.height >=  b.y && a.y+a.height <= b.y+head_size
+        let pt4i = obj2[axis]+obj2[property]
+        let pt4f = obj2[axis]+obj2[property]+obj2["V"+axis]
+        if( pt1i < pt3i ){
+            return pt2f >= pt3f+error
+        }else{
+            return pt1f <= pt4f-error
         }
-        
-        if ( a_inheadOf_b(obj1,obj2) ) colision.Ytype="1headOf2" ///obj1 in head of obj2
-        else if( a_inheadOf_b(obj2,obj1) ) colision.Ytype="2headOf1"
-        else colision.Ytype="normal"
-        ////colision Xtype with obj1 as reference
-        if(obj1.x+obj1.width <= obj2.x+obj2.width/2 )colision.Xtype = "right" ///from from obj1 right
-        else colision.Xtype = "left"
     }
-
-    return colision
+    return will_intersect('x','width',errorx) && will_intersect('y','height',errory)
+    
 
 }

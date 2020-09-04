@@ -11,7 +11,8 @@ export const Default ={
         87:'jump',
         74:'weak_punch',
         73:'strong_punch_or_kick',
-    },  
+        32:"test",
+    },
     damage:(obj) =>{
         if(obj.anim_request!="damage" && obj.anim_request!="jump"){
             obj.anim_hierarchy = "block_anim:walk block:weak_punch block:strong_punch"
@@ -20,7 +21,7 @@ export const Default ={
         }
     },
     move: (obj , v_limit , direction , ev , a=0.1 ,  fric=0.05, fric_change = 0.01 ) =>{
-        obj.jump_Vx = 3*v_limit*direction //jump velocity
+        obj.jump_Vx = 4*v_limit*direction //jump velocity
         let conds = anim_conds(obj,"stand_anim",1)
         if(conds[1]){
             acelerate(obj,a,v_limit,direction)
@@ -46,18 +47,15 @@ export const Default ={
     jump:(obj) =>{
         let cond = anim_conds(obj,"jump",4,false)
         if(cond[0]){
-            obj.Vx = 0
-            obj.Ax = 0
+            obj.Vx=0
+            obj.Ax=0
             obj.inDraw_play = []
             obj.inDraw_play[0] = {
                 in:'end',
                 func:  ()=>{
                     obj.Vy= -6
-                    if(obj.jump_Vx!=undefined){
-                        obj.Vx = obj.jump_Vx
-                    }   
-                    
                     obj.anim_request = "_jumping_in_air"
+                    obj.anim_hierarchy= 1
                     obj.inDraw_play = []
 
                 }
