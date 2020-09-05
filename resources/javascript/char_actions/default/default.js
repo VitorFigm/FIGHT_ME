@@ -20,9 +20,9 @@ export const Default ={
             obj.inDraw_play = []
         }
     },
-    move: (obj , v_limit , direction , ev , reverse, a=0.1 ,  fric=0.05, fric_change = 0.01 ) =>{
+    move: (obj , v_limit , direction , ev , a=0.1 ,  fric=0.05, fric_change = 0.01 ) =>{
         obj.jump_Vx = 4*v_limit*direction //jump velocity
-        let conds = anim_conds(obj,"walk",1,true, reverse)
+        let conds = anim_conds(obj,"walk",1,true)
         if(conds[1]){
             acelerate(obj,a,v_limit,direction)
         }
@@ -36,24 +36,23 @@ export const Default ={
             
         }
     },
-    right: (obj,ev) =>{
-        let reverse 
-        if(obj.direction==1)reverse = false
-        else reverse = true
-        obj.actions.move(obj, 0.8, 1 ,ev,reverse)
+    right: (obj,ev) =>{ 
+        if(obj.direction==1)obj.reverse_anim = false
+        else obj.reverse_anim = true
+        obj.actions.move(obj, 0.8, 1 ,ev)
         
     },  
     ////////
     left: (obj,ev) =>{
-        let reverse 
-        if(obj.direction==-1)reverse = false
-        else reverse = true
-        obj.actions.move(obj, 0.8, -1 ,ev,reverse)
+        if(obj.direction==-1)obj.reverse_anim  = false
+        else obj.reverse_anim  = true
+        obj.actions.move(obj, 0.8, -1 ,ev)
     },
     ////////
     jump:(obj) =>{
         let cond = anim_conds(obj,"jump",4,false)
         if(cond[0]){
+            obj.reverse_anim = false
             obj.Vx=0
             obj.Ax=0
             obj.inDraw_play = []
@@ -72,7 +71,9 @@ export const Default ={
     },
     weak_punch: (obj) =>{
         let cond = anim_conds(obj,"weak_punch",2,false)
+        console.log(cond[0])
         if( cond[0] ){
+            obj.reverse_anim = false
             obj.Ax = 0
             obj.Vx = 0.6*obj.direction   
             obj.inDraw_play = []
@@ -114,6 +115,7 @@ export const Default ={
         }
     },
     strong_punch: (obj) =>{
+        obj.reverse_anim = false
         let cond = anim_conds(obj,"strong_punch",2,false)
         if( cond[0] ){
             obj.Ax = 0
@@ -138,7 +140,7 @@ export const Default ={
         
 }
 
-function anim_conds(obj, anim, hierarchy , overlap_self=true, reverse=false){ ///conditions pattern and define hierachy of animations(to avoid multiples conditionals)
+function anim_conds(obj, anim, hierarchy , overlap_self=true){ ///conditions pattern and define hierachy of animations(to avoid multiples conditionals)
     let cond_to_play; 
     let cond_generic;
 
@@ -149,8 +151,7 @@ function anim_conds(obj, anim, hierarchy , overlap_self=true, reverse=false){ //
         
 
         if(overlap_self){
-            let cond_play_when_reverse = obj.anim_request==anim && obj.reverse_anim!=reverse
-            cond_to_play =  (obj.anim_request!=anim || cond_play_when_reverse) && Hcurrent <=hierarchy 
+            cond_to_play =  obj.anim_request!=anim  && Hcurrent <=hierarchy 
             cond_generic = Hcurrent <= hierarchy
         }else{
             cond_to_play =  obj.anim_request!=anim && Hcurrent < hierarchy
@@ -177,10 +178,8 @@ function anim_conds(obj, anim, hierarchy , overlap_self=true, reverse=false){ //
         }
     }
     if(cond_to_play){
-        console.log("new")
         obj.anim_hierarchy= hierarchy
         obj.anim_request = "_"+anim
-        obj.reverse_anim = reverse
     }
     
     return [cond_to_play , cond_generic]

@@ -25,6 +25,11 @@ export class Char{
         
         this.actions = actions_obj[pattern] ///get a patern of functions to do when a key of a action is pressed
         this.sprites = this.actions.get_all_sprites()
+        let stand_sprite = this.sprites['stand_anim']
+         ///to keep ratio in canvas draw
+         stand_sprite.img.onload = ()=>{
+            this.base_width = stand_sprite.img.width/stand_sprite.cols
+         }
     }
 
     

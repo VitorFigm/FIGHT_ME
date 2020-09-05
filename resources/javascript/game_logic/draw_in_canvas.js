@@ -23,8 +23,18 @@ function draw_char(context,obj,ground_y){
 
     let obj_y = vh_px( ground_y + obj.y - obj.height  )  ////make the coordinate of y of object reference point in the bootom of his foot
     
-    let canvas_args = [ obj_x, obj_y, vw_px(obj.width), vh_px(obj.height) ]
-    context.drawImage(...get_sprites_args(obj)  , ...canvas_args)
+    let sprite_obj = sprite_frames_canvas(obj)
+    let sprites_args = sprite_obj.canvas_args
+    ///calculating ratio
+    let frame_width = sprite_obj.frame_original_width
+    let ratio = 1
+    if(obj.base_width!==undefined){
+        ratio = frame_width/obj.base_width
+    }
+
+    let canvas_args = [ obj_x, obj_y, vw_px(obj.width)*ratio, vh_px(obj.height) ]
+
+    context.drawImage(...sprites_args  , ...canvas_args)
 
     
     context.restore()
@@ -32,7 +42,7 @@ function draw_char(context,obj,ground_y){
 
 
 
-function get_sprites_args(obj){
+function sprite_frames_canvas(obj){   ///return args to draw in canvas and original width of sprite
     if(obj.frame_control==undefined)obj.frame_control=1 //starts animation
    
     ///request control, will be set undefined in the end of the function if stand_anim needs to be played
@@ -103,7 +113,7 @@ function get_sprites_args(obj){
     if(obj.anim_request=="stand_anim")obj.anim_request=undefined
 
 
-    return [img,x,y,width,height] //arg 
+    return {canvas_args:[img,x,y,width,height], frame_original_width:width} //arg 
 
 }
 function show_hp_bars(obj1,obj2,context, width=40, height=5, margin=5){

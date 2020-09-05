@@ -4,7 +4,6 @@ import {keyboard} from '/modules.js'
 
 
 export class Player extends Char{
-
     loop_logic = ()=>{ 
         this.keyboard_action_loop()
         let request = this.request_to_loop
@@ -17,7 +16,7 @@ export class Player extends Char{
 
     constructor(args, patern='Default'){
         super(args,patern)
-
+        
     }
 
 
