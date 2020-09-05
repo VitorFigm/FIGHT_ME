@@ -38,16 +38,18 @@ function get_sprites_args(obj){
     ///request control, will be set undefined in the end of the function if stand_anim needs to be played
     if(obj.anim_request==undefined)obj.anim_request="stand_anim"
     
-    if(obj.anim_request[0]=="_"){  // '_' in start of string indicates a new request, so the animation frame count resets.
-        //removing "_"
-        let to_array = obj.anim_request.split('')
-        to_array.splice(0,1)
-        obj.anim_request = to_array.join("")
-        obj.frame_control=1
+    
+
+    let new_request = false
+    
+    if(obj.anim_request[0]=="_"){  // '_' in start of string indicates a new request.
+        obj.anim_request = obj.anim_request.slice(1)  //slice removes "_"
+        new_request = true
     }
+
     ///getting properties
     let sprite_ref = obj.sprites[obj.anim_request]
-
+    
     let img = sprite_ref.img
 
     let rows = sprite_ref.rows
@@ -55,6 +57,12 @@ function get_sprites_args(obj){
     let cols = sprite_ref.cols
 
     let frame = obj.frame_control
+
+    if(new_request) {
+        if(obj.reverse_anim) obj.frame_control=sprite_ref.frames  
+        else obj.frame_control=1
+    }
+        
 
 
 
@@ -72,13 +80,15 @@ function get_sprites_args(obj){
     x -= parseInt(x/img.width)*img.width ///prevent pass
 
     ///frame control
-    obj.frame_control++;
+    if(obj.reverse_anim)obj.frame_control--;
+    else obj.frame_control++;
 
-    if(obj.frame_control>sprite_ref.frames){
+    if(obj.frame_control>sprite_ref.frames || obj.reverse_anim && obj.frame_control==0){
         obj.frame_control=undefined
         obj.anim_request=undefined
         obj.anim_hierarchy = 0;
         obj.inDraw_play = undefined
+        obj.reverse_anim = undefined
     }
     ///play requested function
     if(obj.inDraw_play !=undefined){
@@ -116,9 +126,9 @@ function show_hp_bars(obj1,obj2,context, width=40, height=5, margin=5){
 
 ///convert to pixel
 function vw_px(x){  ///view width to pixel
-    return (x/100)*window.innerWidth
+    return (x/100)*window.my_width
 }
 function vh_px(x){ ///view width to pixel
-    return (x/100)*window.innerHeight
+    return (x/100)*window.my_height
 }
 

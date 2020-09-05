@@ -20,9 +20,9 @@ export const Default ={
             obj.inDraw_play = []
         }
     },
-    move: (obj , v_limit , direction , ev , a=0.1 ,  fric=0.05, fric_change = 0.01 ) =>{
+    move: (obj , v_limit , direction , ev , reverse, a=0.1 ,  fric=0.05, fric_change = 0.01 ) =>{
         obj.jump_Vx = 4*v_limit*direction //jump velocity
-        let conds = anim_conds(obj,"stand_anim",1)
+        let conds = anim_conds(obj,"walk",1,true, reverse)
         if(conds[1]){
             acelerate(obj,a,v_limit,direction)
         }
@@ -37,11 +37,18 @@ export const Default ={
         }
     },
     right: (obj,ev) =>{
-        obj.actions.move(obj, 0.8, 1 ,ev)
+        let reverse 
+        if(obj.direction==1)reverse = false
+        else reverse = true
+        obj.actions.move(obj, 0.8, 1 ,ev,reverse)
+        
     },  
     ////////
     left: (obj,ev) =>{
-        obj.actions.move(obj, 0.8, -1 ,ev)
+        let reverse 
+        if(obj.direction==-1)reverse = false
+        else reverse = true
+        obj.actions.move(obj, 0.8, -1 ,ev,reverse)
     },
     ////////
     jump:(obj) =>{
@@ -131,7 +138,7 @@ export const Default ={
         
 }
 
-function anim_conds(obj, anim, hierarchy , overlap_self=true){ ///conditions pattern and define hierachy of animations(to avoid multiples conditionals)
+function anim_conds(obj, anim, hierarchy , overlap_self=true, reverse=false){ ///conditions pattern and define hierachy of animations(to avoid multiples conditionals)
     let cond_to_play; 
     let cond_generic;
 
@@ -142,7 +149,8 @@ function anim_conds(obj, anim, hierarchy , overlap_self=true){ ///conditions pat
         
 
         if(overlap_self){
-            cond_to_play =  obj.anim_request!=anim && Hcurrent <=hierarchy 
+            let cond_play_when_reverse = obj.anim_request==anim && obj.reverse_anim!=reverse
+            cond_to_play =  (obj.anim_request!=anim || cond_play_when_reverse) && Hcurrent <=hierarchy 
             cond_generic = Hcurrent <= hierarchy
         }else{
             cond_to_play =  obj.anim_request!=anim && Hcurrent < hierarchy
@@ -168,10 +176,11 @@ function anim_conds(obj, anim, hierarchy , overlap_self=true){ ///conditions pat
             }
         }
     }
-    
     if(cond_to_play){
+        console.log("new")
         obj.anim_hierarchy= hierarchy
         obj.anim_request = "_"+anim
+        obj.reverse_anim = reverse
     }
     
     return [cond_to_play , cond_generic]
@@ -184,4 +193,3 @@ function acelerate(obj,a,limit,direction){
     obj.Ax = a*direction   ///acelerates
     if(Math.abs(obj.Vx) > limit)obj.Vx = limit*direction; ///limits speed
 }
-

@@ -1,0 +1,52 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" x="0px" y="0px" width="1921px" height="1085px" viewBox="0 0 1921 1085">
+<defs>
+<filter id="Filter_1" x="-46.07472545437603%" y="-44.87883930273766%" width="192.14945090875204%" height="189.75767860547532%" color-interpolation-filters="sRGB">
+<feFlood flood-color="#FFF4E8" flood-opacity="1" in="SourceGraphic" result="result1"/>
+
+<feGaussianBlur in="SourceGraphic" stdDeviation="49.333333333333336,47.666666666666664" result="result2"/>
+
+<feComposite in2="result2" in="result1" operator="in" result="result3"/>
+
+<feComposite in2="result3" in="SourceGraphic" operator="over" result="result4"/>
+</filter>
+
+<g id="Layer2_0_FILL">
+<path fill="#330099" stroke="none" d="
+M 1921.4 1085
+L 1921.4 0 1 0 1 1085 1921.4 1085 Z"/>
+</g>
+
+<g id="Symbol_6_0_Layer0_0_FILL">
+<path fill="#FFFFFF" stroke="none" d="
+M 147.8 -61.25
+Q 209.05 -122.45 209.05 -209.05 209.05 -295.65 147.8 -356.9 86.6 -418.1 0 -418.1 -86.6 -418.1 -147.85 -356.9 -209.05 -295.65 -209.05 -209.05 -209.05 -122.45 -147.85 -61.25 -86.6 0 0 0 86.6 0 147.8 -61.25 Z"/>
+</g>
+
+<g id="Layer0_0_FILL">
+<path fill="#667832" stroke="none" d="
+M 1921.4 1085
+L 1921.4 678.95
+Q 1187.1251953125 547.058984375 1 677.45
+L 1 863.3
+Q 0.508203125 863.34609375 0 863.4
+L 0 1085 1921.4 1085 Z"/>
+</g>
+</defs>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#Layer2_0_FILL"/>
+</g>
+
+<g filter="url(#Filter_1)" transform="matrix( 1, 0, 0, 1, 0,0) ">
+<g transform="matrix( 1, 0, 0, 1, 1607.6,567.15) ">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#Symbol_6_0_Layer0_0_FILL"/>
+</g>
+</g>
+</g>
+
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#Layer0_0_FILL"/>
+</g>
+</svg>

@@ -2,13 +2,14 @@ import {Char} from '/modules.js'
 
 export class Enemy extends Char{
     loop_logic = (player)=>{
-        this.intelligence(player)
+        if(this.ia==true)this.intelligence(player)
     }
-    constructor(args,pattern='Default'){
-
+    constructor(args,pattern='Default',ia=false){
+        
         let super_default_args = {x:60 , direction:-1}
 
         super({...super_default_args,...args},pattern)
+        this.ia=ia
     }
     intelligence = (player)=>{
         if(this.request_ia_attack || Math.abs(player.x-this.x)<=10){

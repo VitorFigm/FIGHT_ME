@@ -14,8 +14,14 @@
 <script>
     function canvas_resize(){
         let canvas = document.getElementById('canvas')
-        canvas.width = window.innerWidth
-        canvas.height = window.innerHeight
+        
+        window.my_width = 1920
+        window.my_height =1080
+
+
+        canvas.width = window.my_width
+        canvas.height = window.my_height
+        
     }
     canvas_resize()
     window.onresize = canvas_resize; 

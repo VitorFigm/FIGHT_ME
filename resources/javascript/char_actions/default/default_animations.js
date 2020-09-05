@@ -45,10 +45,10 @@ export function default_loading_all_sprites(){///to load sprites used in actions
             cols:14,
         },
         damage:{
-            img:load_sprite("/resources/chars/Default/damage_3x20x60.svg"),
+            img:load_sprite("/resources/chars/Default/damage_14_5_60.svg"),
             frames:60,
-            rows:3,
-            cols:20,
+            rows:5,
+            cols:14,
         },
         walk:{
             img:load_sprite("/resources/chars/Default/walkcicle_6x15x90.svg"),
