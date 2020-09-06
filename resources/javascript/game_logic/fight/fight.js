@@ -35,6 +35,7 @@ export class Fight{
         ///loop logics
         requestAnimationFrame( ()=>{this.loop(obj1,obj2,args)} )
 
+
     }
 
 

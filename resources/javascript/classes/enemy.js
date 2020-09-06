@@ -3,6 +3,12 @@ import {Char} from '/modules.js'
 export class Enemy extends Char{
     loop_logic = (player)=>{
         if(this.ia==true)this.intelligence(player)
+        let request = this.request_to_loop
+        if(request !=undefined){
+            for(let func of request){
+                func()
+            }
+        }
     }
     constructor(args,pattern='Default',ia=false){
         

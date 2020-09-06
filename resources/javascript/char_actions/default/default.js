@@ -25,6 +25,8 @@ export const Default ={
         let conds = anim_conds(obj,"walk",1,true)
         if(conds[1]){
             acelerate(obj,a,v_limit,direction)
+            if(obj.direction==direction)obj.reverse_anim = false
+            else obj.reverse_anim = true
         }
         
 
@@ -37,31 +39,32 @@ export const Default ={
         }
     },
     right: (obj,ev) =>{ 
-        if(obj.direction==1)obj.reverse_anim = false
-        else obj.reverse_anim = true
-        obj.actions.move(obj, 0.8, 1 ,ev)
-        
+        obj.actions.move(obj, 0.5, 1 ,ev)
     },  
     ////////
     left: (obj,ev) =>{
-        if(obj.direction==-1)obj.reverse_anim  = false
-        else obj.reverse_anim  = true
-        obj.actions.move(obj, 0.8, -1 ,ev)
+
+        obj.actions.move(obj, 0.5, -1 ,ev)
     },
     ////////
     jump:(obj) =>{
         let cond = anim_conds(obj,"jump",4,false)
         if(cond[0]){
-            obj.reverse_anim = false
-            obj.Vx=0
-            obj.Ax=0
-            obj.inDraw_play = []
+            reset(obj)
+            obj.request_to_loop[0] = ()=>{
+                if(obj.Vy>0){
+                    console.log("oi")
+                    obj.reverse_anim = true
+                    obj.anim_request = "_jump"
+                    obj.request_to_loop = []
+                }
+            }
             obj.inDraw_play[0] = {
                 in:'end',
                 func:  ()=>{
                     obj.Vy= -6
                     obj.anim_request = "_jumping_in_air"
-                    obj.anim_hierarchy= 1
+                    obj.anim_hierarchy= "block_anim:walk"
                     obj.inDraw_play = []
 
                 }
@@ -71,12 +74,9 @@ export const Default ={
     },
     weak_punch: (obj) =>{
         let cond = anim_conds(obj,"weak_punch",2,false)
-        console.log(cond[0])
         if( cond[0] ){
-            obj.reverse_anim = false
-            obj.Ax = 0
+            reset(obj)
             obj.Vx = 0.6*obj.direction   
-            obj.inDraw_play = []
             obj.inDraw_play[0] = {
                 in:20,
                 func:  ()=>{
@@ -115,12 +115,10 @@ export const Default ={
         }
     },
     strong_punch: (obj) =>{
-        obj.reverse_anim = false
         let cond = anim_conds(obj,"strong_punch",2,false)
         if( cond[0] ){
-            obj.Ax = 0
+            reset(obj)
             obj.Vx = 0.3*obj.direction   
-            obj.inDraw_play = []
             obj.inDraw_play[0] = {
                 in:40,
                 func:  ()=>{
@@ -149,7 +147,6 @@ function anim_conds(obj, anim, hierarchy , overlap_self=true){ ///conditions pat
 
     if( typeof(Hcurrent)== "number"){
         
-
         if(overlap_self){
             cond_to_play =  obj.anim_request!=anim  && Hcurrent <=hierarchy 
             cond_generic = Hcurrent <= hierarchy
@@ -191,4 +188,11 @@ function acelerate(obj,a,limit,direction){
     obj.fric =0;
     obj.Ax = a*direction   ///acelerates
     if(Math.abs(obj.Vx) > limit)obj.Vx = limit*direction; ///limits speed
+}
+function reset(obj){
+    obj.reverse_anim = false
+    obj.Vx=0
+    obj.Ax=0
+    obj.inDraw_play = []
+    obj.request_to_loop = []
 }

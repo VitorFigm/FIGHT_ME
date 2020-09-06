@@ -16,15 +16,27 @@ function draw_char(context,obj,ground_y){
     ///invert char if needed
     context.save()
     context.scale(obj.direction,1)
-    let fix_position = obj.width/2 - (obj.direction*(obj.width/2))  /// put the same reference point even when we invert canvas.
-   
-    let obj_x = vw_px(obj.x+fix_position)*obj.direction
-    
 
-    let obj_y = vh_px( ground_y + obj.y - obj.height  )  ////make the coordinate of y of object reference point in the bootom of his foot
-    
+    ///sprite vars
     let sprite_obj = sprite_frames_canvas(obj)
+    let original_width = sprite_obj.frame_original_width
+
+    ///position fix
+
+        ///reference
+    let fix_position = obj.width/2 - (obj.direction*(obj.width/2))  /// put the same reference point even when we invert canvas.
+        
+        //animation
+    let sprite_fix =  sprite_obj.fixing_animX
+    if(sprite_fix==undefined)sprite_fix=0
+    let fix_anim_ratio = sprite_fix/obj.base_width
+    let fix_anim = fix_anim_ratio*obj.width  ////anim goes fowards when played, it will fix it
+   
+    ///position calculation and args
+    let obj_x = vw_px(obj.x+fix_position+fix_anim)*obj.direction
+    let obj_y = vh_px( ground_y + obj.y - obj.height  )  ////make the coordinate of y of object reference point in the bootom of his foot
     let sprites_args = sprite_obj.canvas_args
+    
     ///calculating ratio
     let frame_width = sprite_obj.frame_original_width
     let ratio = 1
@@ -48,8 +60,6 @@ function sprite_frames_canvas(obj){   ///return args to draw in canvas and origi
     ///request control, will be set undefined in the end of the function if stand_anim needs to be played
     if(obj.anim_request==undefined)obj.anim_request="stand_anim"
     
-    
-
     let new_request = false
     
     if(obj.anim_request[0]=="_"){  // '_' in start of string indicates a new request.
@@ -66,13 +76,15 @@ function sprite_frames_canvas(obj){   ///return args to draw in canvas and origi
 
     let cols = sprite_ref.cols
 
-    let frame = obj.frame_control
-
     if(new_request) {
+
+        obj.frame_control=1
+
         if(obj.reverse_anim) obj.frame_control=sprite_ref.frames  
         else obj.frame_control=1
     }
-        
+
+    let frame = obj.frame_control
 
 
 
@@ -112,8 +124,7 @@ function sprite_frames_canvas(obj){   ///return args to draw in canvas and origi
     ///undefined plays stand_anim
     if(obj.anim_request=="stand_anim")obj.anim_request=undefined
 
-
-    return {canvas_args:[img,x,y,width,height], frame_original_width:width} //arg 
+    return {canvas_args:[img,x,y,width,height], frame_original_width:width, fixing_animX : sprite_ref.fix_pos} //arg 
 
 }
 function show_hp_bars(obj1,obj2,context, width=40, height=5, margin=5){
