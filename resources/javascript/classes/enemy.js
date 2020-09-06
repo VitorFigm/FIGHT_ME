@@ -2,7 +2,7 @@ import {Char} from '/modules.js'
 
 export class Enemy extends Char{
     loop_logic = (player)=>{
-        if(this.ia==true)this.intelligence(player)
+        if(this.can_move==true)this.intelligence(player)
         let request = this.request_to_loop
         if(request !=undefined){
             for(let func of request){
@@ -10,9 +10,9 @@ export class Enemy extends Char{
             }
         }
     }
-    constructor(args,pattern='Default',ia=false){
+    constructor(args,ia=true,pattern='Default',){
         
-        let super_default_args = {x:60 , direction:-1}
+        let super_default_args = {x:70 , direction:-1}
 
         super({...super_default_args,...args},pattern)
         this.ia=ia

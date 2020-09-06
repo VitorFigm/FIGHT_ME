@@ -15,9 +15,9 @@ export function colision(obj1,obj2,errorx,errory=0){ ///check if colisions block
         let pt4i = obj2[axis]+obj2[property]
         let pt4f = obj2[axis]+obj2[property]+obj2["V"+axis]
         if( pt1i < pt3i ){
-            return pt2f >= pt3f+error
+            return pt2f > pt3f+error
         }else{
-            return pt1f <= pt4f-error
+            return pt1f < pt4f-error
         }
     }
     return will_intersect('x','width',errorx) && will_intersect('y','height',errory)

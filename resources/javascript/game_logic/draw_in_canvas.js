@@ -22,10 +22,8 @@ function draw_char(context,obj,ground_y){
     let original_width = sprite_obj.frame_original_width
 
     ///position fix
-
         ///reference
     let fix_position = obj.width/2 - (obj.direction*(obj.width/2))  /// put the same reference point even when we invert canvas.
-        
         //animation
     let sprite_fix =  sprite_obj.fixing_animX
     if(sprite_fix==undefined)sprite_fix=0
@@ -33,7 +31,7 @@ function draw_char(context,obj,ground_y){
     let fix_anim = fix_anim_ratio*obj.width  ////anim goes fowards when played, it will fix it
    
     ///position calculation and args
-    let obj_x = vw_px(obj.x+fix_position+fix_anim)*obj.direction
+    let obj_x = vw_px(obj.x + fix_position + fix_anim*obj.direction )*obj.direction
     let obj_y = vh_px( ground_y + obj.y - obj.height  )  ////make the coordinate of y of object reference point in the bootom of his foot
     let sprites_args = sprite_obj.canvas_args
     
@@ -135,6 +133,8 @@ function show_hp_bars(obj1,obj2,context, width=40, height=5, margin=5){
 
     ///green percentual
     context.fillStyle = "#66CC33";
+    if(obj1.hp<0)obj1.hp=0
+    if(obj2.hp<0)obj2.hp=0
     let hp_width1 = width*(obj1.hp/100)
     let hp_width2 = width*(obj2.hp/100)
     context.fillRect( vw_px(margin), vh_px(margin) , vw_px(hp_width1), vh_px(height) )

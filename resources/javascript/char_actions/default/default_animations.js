@@ -30,12 +30,6 @@ export function default_loading_all_sprites(){///to load sprites used in actions
             fix_pos:-99.6
         },
         jumping_in_air:{
-            img:load_sprite("/resources/chars/Default/jumpinair_4x10x40.svg"),
-            frames:40,
-            rows:4,
-            cols:13,
-        },
-        jumping_in_air:{
             img:load_sprite("/resources/chars/Default/inAir_15x3x40.svg"),
             frames:40,
             rows:3,
@@ -52,11 +46,12 @@ export function default_loading_all_sprites(){///to load sprites used in actions
             frames:60,
             rows:5,
             cols:14,
+            fix_pos:-54.5
         },
         walk:{
-            img:load_sprite("/resources/chars/Default/walk_cicle_14x5x60.svg"),
-            frames:60,
-            rows:5,
+            img:load_sprite("/resources/chars/Default/walk_14_4_50.svg"),
+            frames:50,
+            rows:4,
             cols:14,
             fix_pos:-130
         },

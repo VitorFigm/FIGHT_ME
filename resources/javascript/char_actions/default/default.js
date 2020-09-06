@@ -21,7 +21,6 @@ export const Default ={
         }
     },
     move: (obj , v_limit , direction , ev , a=0.1 ,  fric=0.05, fric_change = 0.01 ) =>{
-        obj.jump_Vx = 4*v_limit*direction //jump velocity
         let conds = anim_conds(obj,"walk",1,true)
         if(conds[1]){
             acelerate(obj,a,v_limit,direction)
@@ -53,7 +52,6 @@ export const Default ={
             reset(obj)
             obj.request_to_loop[0] = ()=>{
                 if(obj.Vy>0){
-                    console.log("oi")
                     obj.reverse_anim = true
                     obj.anim_request = "_jump"
                     obj.request_to_loop = []

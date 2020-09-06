@@ -3,14 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/resources/css/train.css">
+    <title>Game</title>
+    <link rel="stylesheet" href="/resources/css/game.css">
 </head>
 <body>
 
 
 
 <canvas id="canvas"> </canvas>
+
+<div id="messages">
+    <div  id="get_ready">GET READY</div>
+    <div id="fight">FIGHT !!!!</div>
+
+    <div id="result_menu">
+        <div id="result"></div>
+        <a href="/index.html">BACK TO MENU</a>
+    </div>
+</div>
+
 <script>
     function canvas_resize(){
         let canvas = document.getElementById('canvas')
@@ -39,10 +50,10 @@
 
     //creating chars
     import {Player} from '/modules.js'
-    let player = new Player()
+    let player = new Player({can_move:false})
 
     import {Enemy} from '/modules.js'
-    let enemy = new Enemy()
+    let enemy = new Enemy({can_move:false},false)
 
     ///game logic
     import {Fight} from '/modules.js'

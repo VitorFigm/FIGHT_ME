@@ -1,0 +1,112 @@
+@font-face{
+    src: url('/resources/font/ShadowsIntoLight-Regular.ttf');
+    font-family: shadow;
+}
+
+body{
+    display: none;
+    margin: 0px;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    animation: fade 1s;
+    overflow: hidden;
+    z-index: 1;
+    cursor: url('/resources/cursor.png'),auto;
+}
+canvas{
+    width: 100vw;
+    height: 100vh;
+    background-image: url("/resources/background.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 2;
+}
+
+@keyframes canvas_end{
+    100%{
+        opacity: 0;
+    }
+}
+
+
+#messages{
+    width:100vw;
+    height: 100vh;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: shadow;
+    font-size: 10vh;
+}
+#messages *{
+    z-index: 3;
+}
+#get_ready{
+    position: absolute;
+    display: none;
+    color: rgb(230, 174, 55);
+    animation: fade 3s;
+}
+#fight{
+    color: rgb(207, 85, 85);
+    display: none;
+    position: absolute;
+    animation: fight 0.5s
+}
+
+
+#result_menu{
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    animation: fade 3s;
+}
+#result_menu a{
+    font-size: 1.5vw;
+    text-decoration: none;
+    color: #F5F4C8;
+    text-shadow: -0.1rem -0.2rem 0.5rem #F5F4C8;
+}
+#result_menu a:hover{
+    color:rgb(189, 185, 185);
+    animation: bright 1s infinite ease-in-out;
+}
+@keyframes bright{
+    50%{
+        text-shadow: -0.1rem -0.5rem 1rem #F5F4C8;
+    }
+}
+
+@keyframes fight{
+    0%{
+        opacity: 0;
+    }
+    20%{
+        opacity: 1;
+        transform: translateX(1vw);
+    }
+    40%{
+        opacity: 1;
+        transform: translateX(-1vw);
+    }
+    60%{
+        opacity: 1;
+        transform: translateX(1vw);
+    }
+    80%{
+        opacity: 1;
+        transform: translateX(-1vw);
+    }
+}
+
+@keyframes fade{
+    0%{
+        opacity: 0;
+    }
+}
+
+img{
+    transform: scaleX(-1);
+}

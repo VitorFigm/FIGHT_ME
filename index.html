@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game</title>
+
+    <!----style---->
+    <link rel="stylesheet" href="resources/css/menu.css">
+</head>
+<body>
+    <script>
+        function tutorial_control(){
+            let tutorial = document.getElementById('tutorial')
+            let menu = document.getElementById('first_page')
+            if(tutorial.style.display !="flex"){
+                tutorial.style.display = "flex"
+                menu.style.display = "none"
+            }else{
+                tutorial.style.display = "none"
+                menu.style.display = "flex"
+            }
+        }
+    </script>
+
+
+        <h1 id="title">
+            THE FIGHT GAME
+        </h1>
+        <div id="menu_items">
+
+            <div id="first_page">
+                <a href="templates/game.html">START</a>
+                <a onclick="tutorial_control()">HOW TO PLAY</a>
+                <a href="">MY GITHUB PAGE</a>
+            </div>
+            
+
+            <div id="tutorial"> 
+                <img src="/resources/tutorial.svg">
+                <a onclick="tutorial_control()" >CLOSE TUTORIAL</a>
+            </div>
+
+
+        </div>
+        
+        
+        
+
+</body>
+</html>
