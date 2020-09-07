@@ -4,18 +4,13 @@ import {keyboard} from '/modules.js'
 
 
 export class Player extends Char{
-    loop_logic = ()=>{ 
-        this.keyboard_action_loop()
-        let request = this.request_to_loop
-        if(request !=undefined){
-            for(let func of request){
-                func()
-            }
-        }
-    }
 
     constructor(args, patern='Default'){
         super(args,patern)
+
+        this.main_loop = ()=>{ 
+            this.keyboard_action_loop()
+        }
         
     }
 

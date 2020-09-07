@@ -13,10 +13,14 @@ export const Default ={
         73:'strong_punch_or_kick',
         32:"test",
     },
+    test: (obj)=>{
+        obj.actions.damage(obj)
+    },
     damage:(obj) =>{
         if(obj.anim_request!="damage" && obj.anim_request!="jump"){
-            obj.anim_hierarchy = "block_anim:walk block:weak_punch block:strong_punch"
+            obj.anim_hierarchy = "block:walk block:weak_punch block:strong_punch"
             obj.anim_request = "_damage"
+            obj.block_reverse = true
             obj.inDraw_play = []
         }
     },
@@ -76,7 +80,7 @@ export const Default ={
             reset(obj)
             obj.Vx = 0.6*obj.direction   
             obj.inDraw_play[0] = {
-                in:20,
+                in:30,
                 func:  ()=>{
                     obj.damage = 5
                 }

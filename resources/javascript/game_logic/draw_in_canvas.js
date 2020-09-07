@@ -100,7 +100,7 @@ function sprite_frames_canvas(obj){   ///return args to draw in canvas and origi
     x -= parseInt(x/img.width)*img.width ///prevent pass
 
     ///frame control
-    if(obj.reverse_anim)obj.frame_control--;
+    if(obj.reverse_anim &&!obj.block_reverse)obj.frame_control--;
     else obj.frame_control++;
 
     if(obj.frame_control>sprite_ref.frames || obj.reverse_anim && obj.frame_control==0){
@@ -109,6 +109,7 @@ function sprite_frames_canvas(obj){   ///return args to draw in canvas and origi
         obj.anim_hierarchy = 0;
         obj.inDraw_play = undefined
         obj.reverse_anim = undefined
+        obj.block_reverse = undefined
     }
     ///play requested function
     if(obj.inDraw_play !=undefined){

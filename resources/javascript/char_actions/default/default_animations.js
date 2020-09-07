@@ -46,13 +46,13 @@ export function default_loading_all_sprites(){///to load sprites used in actions
             frames:60,
             rows:5,
             cols:14,
-            fix_pos:-54.5
+            fix_pos:-120,
         },
         walk:{
-            img:load_sprite("/resources/chars/Default/walk_14_4_50.svg"),
+            img:load_sprite("/resources/chars/Default/walk_13_4_50.svg"),
             frames:50,
             rows:4,
-            cols:14,
+            cols:13,
             fix_pos:-130
         },
     }

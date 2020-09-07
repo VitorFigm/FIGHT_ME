@@ -1,12 +1,20 @@
 import {colision} from "/modules.js"
 export function fight_P2P_colision_attack_loop(obj1,obj2){  ///colision and attack betwen players
     ///blocks go through
-    if( colision(obj1,obj2,7) ){
-        let stop = (obj)=>{
-            obj.Vx=0;
-        }
-        stop(obj1);stop(obj2)
+    let top_of = (ref1,ref2)=>{
+        return ref1.y+ref1.height <= ref2.y 
     }
+    if( colision(obj1,obj2,7) ){
+        obj1.Vx=0
+        obj2.Vx=0
+        ///jump block
+        
+        if(  top_of(obj1,obj2) || top_of(obj2,obj1)  ) {
+            obj1.Vy = -obj1.Vy 
+            obj2.Vy = -obj2.Vy
+        }
+    }
+
     ///attacks
     if( colision(obj1,obj2,6,1) ){
         apply_attack(obj1,obj2)
@@ -19,6 +27,8 @@ function apply_attack(obj1,obj2,mult=1){ ////mult: damage bonus
         if( ref1.damage != undefined ){
             ref2.hp-= ref1.damage*mult;
             ref2.actions.damage(ref2)
+            ref2.Vx = -ref2.direction
+            ref2.fric = 0.1
             ref2.got_damage = true
             ref1.damage=undefined ///reset damage
         }

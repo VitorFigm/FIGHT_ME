@@ -26,10 +26,9 @@ export function velocity_logic(obj){
 export function posChange(obj){
 
     obj.x += obj.Vx
-    
     obj.y += obj.Vy
     if(obj.y>obj.block_y){
-        obj.Vy =0;
+        obj.Vy = 0; ///cannot be 0, due the jump colision
         obj.y=obj.block_y;
     }
 }

@@ -10,16 +10,16 @@ export class Fight{
         ///player loop logic
         obj1.loop_logic()
         obj2.loop_logic(obj1)
-
         ///game logic loops
+            ///arena limit needs to be on top due block_y property
         arena_limit(obj1,100)
         arena_limit(obj2,100)
-        
 
         velocity_logic(obj1,0)
         velocity_logic(obj2,0)
-
+        
         fight_P2P_colision_attack_loop(obj1,obj2)
+        
         posChange(obj1)
         posChange(obj2)
         
@@ -31,7 +31,7 @@ export class Fight{
             requestAnimationFrame( ()=>{this.loop(obj1,obj2,args)} )
         }else{
             ///result
-            document.getElementById("canvas").style.animation = "canvas_end 1s forwards"
+            document.getElementById("messages").style.animation = "game_end 1s forwards"
             document.getElementsByTagName('body')[0].style.cursor = null ///show cursor
             document.getElementById("result_menu").style.display = "flex"
             let result = document.getElementById("result")

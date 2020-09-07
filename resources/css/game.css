@@ -23,11 +23,6 @@ canvas{
     z-index: 2;
 }
 
-@keyframes canvas_end{
-    100%{
-        opacity: 0;
-    }
-}
 
 
 #messages{
@@ -39,7 +34,27 @@ canvas{
     align-items: center;
     font-family: shadow;
     font-size: 10vh;
+    z-index: 3;
 }
+
+@keyframes game_end{
+    10%{
+      background-color: red;  
+    }
+    20%{
+        background-color: transparent;  
+    }
+    30%{
+        background-color: red;  
+      }
+    40%{
+        background-color: transparent;   
+    }
+    100%{
+        background-color: black;   
+    }
+}
+
 #messages *{
     z-index: 3;
 }
@@ -68,6 +83,7 @@ canvas{
     text-decoration: none;
     color: #F5F4C8;
     text-shadow: -0.1rem -0.2rem 0.5rem #F5F4C8;
+    cursor: url('/resources/cursor.png'),auto;
 }
 #result_menu a:hover{
     color:rgb(189, 185, 185);
