@@ -4,23 +4,33 @@
 }
 
 body{
-    display: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin: 0px;
     width: 100vw;
     height: 100vh;
     background-color: black;
-    animation: fade 1s;
     overflow: hidden;
     z-index: 1;
     cursor: url('/resources/cursor.png'),auto;
 }
+body p{
+    margin: 1vw;
+    font-family: shadow;
+    color:white
+}
 canvas{
+    display: none;
+    position: absolute;
     width: 100vw;
     height: 100vh;
     background-image: url("/resources/background.svg");
     background-repeat: no-repeat;
     background-size: cover;
     z-index: 2;
+    animation: fade 1s;
 }
 
 

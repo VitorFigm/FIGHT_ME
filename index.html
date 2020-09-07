@@ -3,13 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game</title>
+    <title>The Fight Game</title>
 
     <!----style---->
     <link rel="stylesheet" href="resources/css/menu.css">
 </head>
 <body>
     <script>
+        let menu_audio = new Audio("/resources/audios/musics/makai-symphony-endless-storm.mp3")
+        
+        window.onload = () =>{
+            document.getElementsByTagName('body')[0].style.display ='flex'
+            menu_audio.play()
+        }
         function tutorial_control(){
             let tutorial = document.getElementById('tutorial')
             let menu = document.getElementById('first_page')
@@ -22,8 +28,6 @@
             }
         }
     </script>
-
-
         <h1 id="title">
             THE FIGHT GAME
         </h1>
@@ -32,7 +36,7 @@
             <div id="first_page">
                 <a href="templates/game.html">START</a>
                 <a onclick="tutorial_control()">HOW TO PLAY</a>
-                <a href="">MY GITHUB PAGE</a>
+                <a href="https://github.com/VitorFigm">MY GITHUB PAGE</a>
             </div>
             
 

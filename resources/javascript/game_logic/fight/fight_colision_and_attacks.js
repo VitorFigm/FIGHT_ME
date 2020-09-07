@@ -27,8 +27,10 @@ function apply_attack(obj1,obj2,mult=1){ ////mult: damage bonus
         if( ref1.damage != undefined ){
             ref2.hp-= ref1.damage*mult;
             ref2.actions.damage(ref2)
-            ref2.Vx = -ref2.direction
-            ref2.fric = 0.1
+            ///audio
+            if(ref1.damage<=5)audios.weak_dmg.play()
+            else audios.strong_dmg.play()
+
             ref2.got_damage = true
             ref1.damage=undefined ///reset damage
         }

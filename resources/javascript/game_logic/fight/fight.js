@@ -54,15 +54,15 @@ export class Fight{
         //ready fight messages
         setTimeout(
             document.getElementById("get_ready").style.display = "flex"
-        ,1000)
+        ,2000)
         setTimeout(
             ()=>{document.getElementById("fight").style.display = "flex";
             document.getElementById("get_ready").style.display = "none"}
-        ,2000)
+        ,3000)
         setTimeout(
             ()=>{document.getElementById("fight").style.display = "none";
         obj1.can_move=true;obj2.can_move=true}
-        ,3000)
+        ,4000)
 
     }
 

@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game</title>
+    <title>The Fight Game</title>
     <link rel="stylesheet" href="/resources/css/game.css">
 </head>
 <body>
 
-
+<p>Loading...</p>
+<progress max="100" value="100"> </progress>
 
 <canvas id="canvas"> </canvas>
 
@@ -20,6 +21,15 @@
         <div id="result"></div>
         <a href="/index.html">BACK TO MENU</a>
     </div>
+    <script>
+        ///audio object
+        let audios = {
+            fight_music:new Audio("/resources/audios/musics/alexander-nakarada-chase.mp3"),
+            weak_dmg:new Audio("/resources/audios/effects/weak_damage.wav"),
+            strong_dmg:new Audio("/resources/audios/effects/strong_damage.wav")
+        }
+        audios.fight_music.play()
+    </script>
 </div>
 
 <script>
@@ -57,12 +67,11 @@
 
     ///game logic
     import {Fight} from '/modules.js'
-    let fight = new Fight(player,enemy)
-
-
-
-    ///play fade animation
-    document.getElementsByTagName('body')[0].style.display = "flex" 
+    window.onload = ()=>{
+        let fight = new Fight(player,enemy)
+        ///play fade animation
+        document.getElementsByTagName('canvas')[0].style.display = "flex" 
+    }
    
 
 </script>

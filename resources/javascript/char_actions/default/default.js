@@ -10,14 +10,10 @@ export const Default ={
         65:'left',
         87:'jump',
         74:'weak_punch',
-        73:'strong_punch_or_kick',
-        32:"test",
-    },
-    test: (obj)=>{
-        obj.actions.damage(obj)
+        73:'strong_punch',
     },
     damage:(obj) =>{
-        if(obj.anim_request!="damage" && obj.anim_request!="jump"){
+        if(obj.anim_request!="jump"){
             obj.anim_hierarchy = "block:walk block:weak_punch block:strong_punch"
             obj.anim_request = "_damage"
             obj.block_reverse = true
@@ -91,28 +87,6 @@ export const Default ={
                     obj.Vx = 0
                     obj.damage = undefined
                 } 
-            }
-        }
-    },
-    strong_punch_or_kick: (obj) =>{
-        if(obj.y!=0) obj.actions.air_kick(obj)
-        else obj.actions.strong_punch(obj)
-    },
-    air_kick: (obj) =>{
-        if( obj.anim_request != "air_kick" ){
-            obj.anim_request = "_air_kick"
-            obj.inDraw_play = []
-            obj.inDraw_play[0] = {
-                in:40,
-                func:  ()=>{
-                    obj.damage = 5
-                }
-            }
-            obj.inDraw_play[1] = {
-                in:"end",
-                func:  ()=>{
-                    obj.damage = undefined
-                }
             }
         }
     },

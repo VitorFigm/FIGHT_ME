@@ -25,7 +25,7 @@ export class Enemy extends Char{
         if(this.request_ia_attack || Math.abs(player.x-this.x)<=10){
             let rand = Math.random()
             if(rand<=0.1) this.actions.weak_punch(this)
-            if(rand>=0.96) this.actions.strong_punch_or_kick(this)
+            if(rand>=0.96) this.actions.strong_punch(this)
         }else{
             this.actions[this.go_to](this)
             ////decide which diretion to go
