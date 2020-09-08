@@ -11,7 +11,7 @@ export {keyboard,key_events};
         import {default_loading_all_sprites} from "resources/javascript/char_actions/default/default_animations.js"
         export {default_loading_all_sprites};
         
-    import {actions_obj} from "resources/javascript/char_actions/__main_object.js"
+    import {actions_obj} from "resources/javascript/char_actions/main_object.js"
     export {actions_obj};
     
 
@@ -19,7 +19,7 @@ export {keyboard,key_events};
     export {load_sprite}
 
     ///classes
-    import {Char} from "resources/javascript/classes/_char.js"
+    import {Char} from "resources/javascript/classes/char.js"
     export {Char}
 
     import {Enemy} from "resources/javascript/classes/enemy.js"
