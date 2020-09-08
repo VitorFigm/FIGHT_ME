@@ -2,7 +2,7 @@
 
 A fight game made only with pure javascript
 
-## Click here to play
+## [Click here to play](https://vitorfigm.github.io/Fight_Game/)
 
 # PRETTY AND ORIGINAL DESIGN
 Everything in this project except the sounds was made by me, including the menu design, the 2d character and the background image.
@@ -13,7 +13,7 @@ I used Adobe Animate to do those fluid 2D character animations
 ![alt text](https://i.imgur.com/Io5Q7Tq.png)
 ![alt text](https://i.imgur.com/6VeIItm.png)
 
-# Click here to play
+## [Click here to play](https://vitorfigm.github.io/Fight_Game/)
 
 # Sounds
 Sound effect taken from https://freesound.org/, credits to thefsoundman and plucinskicasey.
