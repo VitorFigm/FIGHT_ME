@@ -4,12 +4,12 @@ A fight game made only with pure javascript
 
 ### [Click here to play](https://vitorfigm.github.io/Fight_Game/)
 
-# PRETTY AND ORIGINAL DESIGN
+# Pretty and original design
 Everything in this project except the sounds was made by me, including the menu design, the 2d character and the background image.
-# FLUID ANIMATION
+# Fluid animation
 I used Adobe Animate to do those fluid 2D character animations
 
-# SCREENSHOTS
+# Screenshots
 ![alt text](https://i.imgur.com/Io5Q7Tq.png)
 ![alt text](https://i.imgur.com/6VeIItm.png)
 
