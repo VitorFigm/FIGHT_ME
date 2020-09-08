@@ -10,7 +10,7 @@ Everything in this project except the sounds was made by me, including the menu 
 I used Adobe Animate to do those 2D character animations
 
 # Screenshots
-![alt text](https://i.imgur.com/Io5Q7Tq.png)
+![alt text](https://i.imgur.com/sJr7sDF.png)
 ![alt text](https://i.imgur.com/6VeIItm.png)
 
 ## [Click here to play](https://vitorfigm.github.io/FIGHT_WITH_ME/)
