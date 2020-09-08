@@ -3,18 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Fight Game</title>
+    <title>FIGHT WITH ME</title>
 
     <!----style---->
     <link rel="stylesheet" href="resources/css/menu.css">
 </head>
 <body>
     <script>
-        let menu_audio = new Audio("/Fight_Game/resources/audios/musics/makai-symphony-endless-storm.mp3")
+        let menu_audio = new Audio("/FIGHT_WITH_ME/resources/audios/musics/makai-symphony-endless-storm.mp3")
         
         window.onload = () =>{
             document.getElementsByTagName('body')[0].style.display ='flex'
+        }
+        function start(){
+            document.getElementById('start_btn').style.display="none"
             menu_audio.play()
+            document.getElementById('menu_container').style.display ='flex'
         }
         function tutorial_control(){
             let tutorial = document.getElementById('tutorial')
@@ -28,24 +32,29 @@
             }
         }
     </script>
-        <h1 id="title">
-            THE FIGHT GAME
-        </h1>
-        <div id="menu_items">
 
-            <div id="first_page">
-                <a href="templates/game.html">START</a>
-                <a onclick="tutorial_control()">HOW TO PLAY</a>
-                <a href="https://github.com/VitorFigm">MY GITHUB PAGE</a>
+        <a onclick="start()" id="start_btn">Click here to start the game</a>
+
+        <div id="menu_container">
+            <h1 id="title">
+                FIGHT WITH ME
+            </h1>
+            <div id="menu_items">
+    
+                <div id="first_page">
+                    <a href="templates/game.html">START</a>
+                    <a onclick="tutorial_control()">HOW TO PLAY</a>
+                    <a href="https://github.com/VitorFigm">MY GITHUB PAGE</a>
+                </div>
+                
+    
+                <div id="tutorial"> 
+                    <img src="resources/tutorial.svg">
+                    <a onclick="tutorial_control()" >CLOSE TUTORIAL</a>
+                </div>
+    
+    
             </div>
-            
-
-            <div id="tutorial"> 
-                <img src="resources/tutorial.svg">
-                <a onclick="tutorial_control()" >CLOSE TUTORIAL</a>
-            </div>
-
-
         </div>
         
         

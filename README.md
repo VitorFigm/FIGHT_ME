@@ -2,7 +2,7 @@
 
 A fighting game made only with pure javascript
 
-### [Click here to play](https://vitorfigm.github.io/Fight_Game/)
+### [Click here to play](https://vitorfigm.github.io/FIGHT_WITH_ME/)
 
 # Pretty and original design
 Everything in this project except the sounds was made by me, including the menu design, the 2d character and the background image.
@@ -13,7 +13,7 @@ I used Adobe Animate to do those 2D character animations
 ![alt text](https://i.imgur.com/Io5Q7Tq.png)
 ![alt text](https://i.imgur.com/6VeIItm.png)
 
-## [Click here to play](https://vitorfigm.github.io/Fight_Game/)
+## [Click here to play](https://vitorfigm.github.io/FIGHT_WITH_ME/)
 
 # Sounds
 Sound effect taken from https://freesound.org/, credits to thefsoundman and plucinskicasey.
