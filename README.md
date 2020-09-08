@@ -1,4 +1,4 @@
-# Fight_Game
+# FIGHT_WITH_ME
 
 A fighting game made only with pure javascript
 
