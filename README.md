@@ -2,7 +2,7 @@
 
 A fight game made only with pure javascript
 
-## [Click here to play](https://vitorfigm.github.io/Fight_Game/)
+[Click here to play](https://vitorfigm.github.io/Fight_Game/)
 
 # PRETTY AND ORIGINAL DESIGN
 Everything in this project except the sounds was made by me, including the menu design, the 2d character and the background image.
