@@ -1,4 +1,4 @@
-import {default_loading_all_sprites} from '/modules.js'
+import {default_loading_all_sprites} from '/Fight_Game/modules.js'
 
 export const Default ={
     name:"Default",

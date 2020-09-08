@@ -1,4 +1,4 @@
-import {load_sprite} from '/modules.js'
+import {load_sprite} from '/Fight_Game/modules.js'
 
 export function default_loading_all_sprites(){///to load sprites used in actions to a object that will be returned
     let sprites = {
