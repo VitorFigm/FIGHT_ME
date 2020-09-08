@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Fight Game</title>
-    <link rel="stylesheet" href="../resources/css/game.css">
+    <link rel="stylesheet" href="/Fight_Game/resources/css/game.css">
 </head>
 <body>
 
@@ -24,9 +24,9 @@
     <script>
         ///audio object
         let audios = {
-            fight_music:new Audio("../resources/audios/musics/alexander-nakarada-chase.mp3"),
-            weak_dmg:new Audio("../resources/audios/effects/weak_damage.wav"),
-            strong_dmg:new Audio("../resources/audios/effects/strong_damage.wav")
+            fight_music:new Audio("/Fight_Game/resources/audios/musics/alexander-nakarada-chase.mp3"),
+            weak_dmg:new Audio("/Fight_Game/resources/audios/effects/weak_damage.wav"),
+            strong_dmg:new Audio("/Fight_Game/resources/audios/effects/strong_damage.wav")
         }
         audios.fight_music.play()
     </script>
@@ -55,18 +55,18 @@
 <script type="module">
     
     //events
-    import {key_events} from '../modules.js'
+    import {key_events} from '/Fight_Game/modules.js'
     key_events()
 
     //creating chars
-    import {Player} from '../modules.js'
+    import {Player} from '/Fight_Game/modules.js'
     let player = new Player({can_move:false})
 
-    import {Enemy} from '../modules.js'
+    import {Enemy} from '/Fight_Game/modules.js'
     let enemy = new Enemy({can_move:false})
 
     ///game logic
-    import {Fight} from '../modules.js'
+    import {Fight} from '/Fight_Game/modules.js'
     window.onload = ()=>{
         let fight = new Fight(player,enemy)
         ///play fade animation
