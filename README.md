@@ -1,6 +1,6 @@
 # Fight_Game
 
-A fight game made only with pure javascript
+A fighting game made only with pure javascript
 
 ### [Click here to play](https://vitorfigm.github.io/Fight_Game/)
 
