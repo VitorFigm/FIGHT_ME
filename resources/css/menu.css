@@ -17,6 +17,9 @@ body{
     width: 100vw;
     font-family: shadow;
     cursor: url('/FIGHT_WITH_ME/resources/cursor.png'),auto;
+    font-size: 14pt;
+    color:white;
+    text-shadow: -0.1rem -0.2rem 0.2rem;
 }
 
 #menu_container{
@@ -51,15 +54,10 @@ body #title{
 }
 
 body a{
-    font-size: 14pt;
+    font-size: 1rem;
     text-decoration: none;
     color:white;
     cursor: url('/FIGHT_WITH_ME/resources/cursor.png'),auto;
-}
-body{
-    font-size: 1rem;
-    color:white;
-    text-shadow: -0.1rem -0.2rem 0.2rem;
 }
 @keyframes menu_items_animation{
     0%{
