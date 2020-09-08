@@ -6,8 +6,8 @@ A fight game made only with pure javascript
 
 # Pretty and original design
 Everything in this project except the sounds was made by me, including the menu design, the 2d character and the background image.
-# Fluid animation
-I used Adobe Animate to do those fluid 2D character animations
+# Good animation
+I used Adobe Animate to do those 2D character animations
 
 # Screenshots
 ![alt text](https://i.imgur.com/Io5Q7Tq.png)
