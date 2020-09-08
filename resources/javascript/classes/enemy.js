@@ -1,4 +1,4 @@
-import {Char} from '/[repo]/modules.js'
+import {Char} from '../modules.js'
 
 export class Enemy extends Char{
     frame_count = 0

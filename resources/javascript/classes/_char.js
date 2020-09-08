@@ -1,4 +1,4 @@
-import {actions_obj} from "/[repo]/modules.js"
+import {actions_obj} from "../modules.js"
 
 export class Char{
     ///actions control

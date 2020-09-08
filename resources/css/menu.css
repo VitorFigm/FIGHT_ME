@@ -1,9 +1,9 @@
 @font-face{
-    src: url('/Fight_Game/resources/font/ShadowsIntoLight-Regular.ttf');
+    src: url('../resources/font/ShadowsIntoLight-Regular.ttf');
     font-family: shadow;
 }
 @font-face{
-    src: url("/Fight_Game/resources/font/courier-new.ttf");
+    src: url("../resources/font/courier-new.ttf");
     font-family: courrier;
 }
 
@@ -17,7 +17,7 @@ body{
     background-color: black;
     height: 100vh;
     width: 100vw;
-    cursor: url('/Fight_Game/resources/cursor.png'),auto;
+    cursor: url('../resources/cursor.png'),auto;
     animation: body_animation 5s ease-in-out;
     overflow: hidden;
 }
@@ -45,7 +45,7 @@ body a{
     font-size: 14pt;
     text-decoration: none;
     color:white;
-    cursor: url('/Fight_Game/resources/cursor.png'),auto;
+    cursor: url('../resources/cursor.png'),auto;
 }
 body{
     font-size: 1rem;

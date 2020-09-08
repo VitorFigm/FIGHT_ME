@@ -1,8 +1,8 @@
-import {fight_P2P_colision_attack_loop} from '/[repo]/modules.js'
-import {arena_limit} from '/[repo]/modules.js'
-import {canvas_draw} from '/[repo]/modules.js'
-import {velocity_logic,posChange} from '/[repo]/modules.js'
-import {change_dir} from '/[repo]/modules.js'
+import {fight_P2P_colision_attack_loop} from '../modules.js'
+import {arena_limit} from '../modules.js'
+import {canvas_draw} from '../modules.js'
+import {velocity_logic,posChange} from '../modules.js'
+import {change_dir} from '../modules.js'
 
 export class Fight{
 
