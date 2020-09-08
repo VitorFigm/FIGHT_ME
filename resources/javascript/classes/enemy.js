@@ -1,4 +1,4 @@
-import {Char} from '/Fight_Game/modules.js'
+import {Char} from '/[repo]/modules.js'
 
 export class Enemy extends Char{
     frame_count = 0
