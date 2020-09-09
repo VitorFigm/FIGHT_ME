@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FIGHT WITH ME</title>
-    <link rel="stylesheet" href="/FIGHT_WITH_ME/resources/css/game.css">
+    <title>FIGHT ME</title>
+    <link rel="stylesheet" href="/FIGHT_ME/resources/css/game.css">
 </head>
 <body>
 
@@ -18,14 +18,14 @@
 
     <div id="result_menu">
         <div id="result"></div>
-        <a href="/FIGHT_WITH_ME/index.html">BACK TO MENU</a>
+        <a href="/FIGHT_ME/index.html">BACK TO MENU</a>
     </div>
     <script>
         ///audio object
         let audios = {
-            fight_music:new Audio("/FIGHT_WITH_ME/resources/audios/musics/alexander-nakarada-chase.mp3"),
-            weak_dmg:new Audio("/FIGHT_WITH_ME/resources/audios/effects/weak_damage.wav"),
-            strong_dmg:new Audio("/FIGHT_WITH_ME/resources/audios/effects/strong_damage.wav")
+            fight_music:new Audio("/FIGHT_ME/resources/audios/musics/alexander-nakarada-chase.mp3"),
+            weak_dmg:new Audio("/FIGHT_ME/resources/audios/effects/weak_damage.wav"),
+            strong_dmg:new Audio("/FIGHT_ME/resources/audios/effects/strong_damage.wav")
         }
         audios.fight_music.play()
     </script>
@@ -54,18 +54,18 @@
 <script type="module">
     
     //events
-    import {key_events} from '/FIGHT_WITH_ME/modules.js'
+    import {key_events} from '/FIGHT_ME/modules.js'
     key_events()
 
     //creating chars
-    import {Player} from '/FIGHT_WITH_ME/modules.js'
+    import {Player} from '/FIGHT_ME/modules.js'
     let player = new Player({can_move:false})
 
-    import {Enemy} from '/FIGHT_WITH_ME/modules.js'
+    import {Enemy} from '/FIGHT_ME/modules.js'
     let enemy = new Enemy({can_move:false})
 
     ///game logic
-    import {Fight} from '/FIGHT_WITH_ME/modules.js'
+    import {Fight} from '/FIGHT_ME/modules.js'
     window.onload = ()=>{
         let fight = new Fight(player,enemy)
         ///play fade animation

@@ -1,4 +1,4 @@
-import {actions_obj} from "/FIGHT_WITH_ME/modules.js"
+import {actions_obj} from "/FIGHT_ME/modules.js"
 
 export class Char{
     ///actions control
