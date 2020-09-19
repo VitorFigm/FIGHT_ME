@@ -1,7 +1,7 @@
 import {load_sprite} from '/FIGHT_ME/modules.js'
 
 export function default_loading_all_sprites(){///to load sprites used in actions to a object that will be returned
-    let sprites = {
+    const sprites = {
         stand_anim:{
             img:load_sprite("/FIGHT_ME/resources/chars/Default/standpose_3x22x60.svg"),
             frames:60,

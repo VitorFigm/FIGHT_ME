@@ -1,6 +1,6 @@
 export function canvas_draw(obj1,obj2,canvas_id,ground_y,fight){
-    let canvas = document.getElementById(canvas_id)
-    let context = canvas.getContext('2d')
+    const canvas = document.getElementById(canvas_id)
+    const context = canvas.getContext('2d')
 
     context.clearRect(0, 0, canvas.width, canvas.height)
     if(fight!=undefined){
@@ -18,31 +18,27 @@ function draw_char(context,obj,ground_y){
     context.scale(obj.direction,1)
 
     ///sprite vars
-    let sprite_obj = sprite_frames_canvas(obj)
-    let original_width = sprite_obj.frame_original_width
+    const sprite_obj = sprite_frames_canvas(obj)
+    const original_width = sprite_obj.frame_original_width
 
     ///position fix
         ///reference
-    let fix_position = obj.width/2 - (obj.direction*(obj.width/2))  /// put the same reference point even when we invert canvas.
+    const fix_position = obj.width/2 - (obj.direction*(obj.width/2))  /// put the same reference point even when we invert canvas.
         //animation
     let sprite_fix =  sprite_obj.fixing_animX
     if(sprite_fix==undefined)sprite_fix=0
-    let fix_anim_ratio = sprite_fix/obj.base_width
-    let fix_anim = fix_anim_ratio*obj.width  ////anim goes fowards when played, it will fix it
+    const fix_anim_ratio = sprite_fix/obj.base_width
+    const fix_anim = fix_anim_ratio*obj.width  ////anim goes fowards when played, it will fix it
    
     ///position calculation and args
-    let obj_x = vw_px(obj.x + fix_position + fix_anim*obj.direction )*obj.direction
-    let obj_y = vh_px( ground_y + obj.y - obj.height  )  ////make the coordinate of y of object reference point in the bootom of his foot
-    let sprites_args = sprite_obj.canvas_args
+    const obj_x = vw_px(obj.x + fix_position + fix_anim*obj.direction )*obj.direction
+    const obj_y = vh_px( ground_y + obj.y - obj.height  )  ////make the coordinate of y of object reference point in the bootom of his foot
+    const sprites_args = sprite_obj.canvas_args
     
     ///calculating ratio
-    let frame_width = sprite_obj.frame_original_width
-    let ratio = 1
-    if(obj.base_width!==undefined){
-        ratio = frame_width/obj.base_width
-    }
+    const ratio= obj.base_width!==undefined? original_width/obj.base_width:1
 
-    let canvas_args = [ obj_x, obj_y, vw_px(obj.width)*ratio, vh_px(obj.height) ]
+    const canvas_args = [ obj_x, obj_y, vw_px(obj.width)*ratio, vh_px(obj.height) ]
 
     context.drawImage(...sprites_args  , ...canvas_args)
 
@@ -66,13 +62,13 @@ function sprite_frames_canvas(obj){   ///return args to draw in canvas and origi
     }
 
     ///getting properties
-    let sprite_ref = obj.sprites[obj.anim_request]
+    const sprite_ref = obj.sprites[obj.anim_request]
     
-    let img = sprite_ref.img
+    const img = sprite_ref.img
 
-    let rows = sprite_ref.rows
+    const rows = sprite_ref.rows
 
-    let cols = sprite_ref.cols
+    const cols = sprite_ref.cols
 
     if(new_request) {
 

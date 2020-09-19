@@ -14,7 +14,7 @@ export const Default ={
     },
     damage:(obj) =>{
         if(obj.anim_request!="jump"){
-            obj.anim_hierarchy = "block:walk block:weak_punch block:strong_punch"
+            obj.anim_hierarchy = {block:walk, block:weak_punch, block:strong_punch}
             obj.anim_request = "_damage"
             obj.block_reverse = true
             obj.inDraw_play = []
@@ -62,7 +62,7 @@ export const Default ={
                 func:  ()=>{
                     obj.Vy= -6
                     obj.anim_request = "_jumping_in_air"
-                    obj.anim_hierarchy= "block_anim:walk"
+                    obj.anim_hierarchy= {block_anim:walk}
                     obj.inDraw_play = []
 
                 }
@@ -118,11 +118,9 @@ function anim_conds(obj, anim, hierarchy , overlap_self=true){ ///conditions pat
     let cond_to_play; 
     let cond_generic;
 
-
-    let Hcurrent = obj.anim_hierarchy
-
-    if( typeof(Hcurrent)== "number"){
-        
+    const Hcurrent = obj.anim_hierarchy
+    ///if Hcurrent is number
+    const normal_hierarchy = ()=>{
         if(overlap_self){
             cond_to_play =  obj.anim_request!=anim  && Hcurrent <=hierarchy 
             cond_generic = Hcurrent <= hierarchy
@@ -130,26 +128,31 @@ function anim_conds(obj, anim, hierarchy , overlap_self=true){ ///conditions pat
             cond_to_play =  obj.anim_request!=anim && Hcurrent < hierarchy
             cond_generic = Hcurrent < hierarchy
         }
-    
-    }else{
+    }
+    ///if is obj
+    const obj_hierarchy = ()=>{
         cond_to_play = true
         cond_generic = true
-        let array = Hcurrent.split(" ")
-        for(let i of array){
-            i = i.split(":")
-            if(i[0]=="block_anim"){  ///only blocks animation
-                if(anim == i[1]){
+        for(let i in Hcurrent){
+            if(i=="block_anim"){  ///only blocks animation
+                if(anim == Hcurrent[i]){
                     cond_to_play = false
                     cond_generic = true
                 }
-            }else if(i[0]=="block"){ ///blocks actions
-                if(anim == i[1]){
+            }else if(i=="block"){ ///blocks actions
+                if(anim == Hcurrent[i]){
                     cond_to_play = false
                     cond_generic = false
                 }
             }
         }
     }
+    ///define hierarchy function to use
+    const hierarchy_function = typeof(Hcurrent)=="number"?
+        normal_hierarchy:obj_hierarchy
+    hierarchy_function()
+
+    ///request animation
     if(cond_to_play){
         obj.anim_hierarchy= hierarchy
         obj.anim_request = "_"+anim
