@@ -14,7 +14,7 @@ export const Default ={
     },
     damage:(obj) =>{
         if(obj.anim_request!="jump"){
-            obj.anim_hierarchy = {block:walk, block:weak_punch, block:strong_punch}
+            obj.anim_hierarchy = {block:'walk', block:'weak_punch', block:'strong_punch'}
             obj.anim_request = "_damage"
             obj.block_reverse = true
             obj.inDraw_play = []
@@ -62,7 +62,7 @@ export const Default ={
                 func:  ()=>{
                     obj.Vy= -6
                     obj.anim_request = "_jumping_in_air"
-                    obj.anim_hierarchy= {block_anim:walk}
+                    obj.anim_hierarchy= {block_anim:'walk'}
                     obj.inDraw_play = []
 
                 }
