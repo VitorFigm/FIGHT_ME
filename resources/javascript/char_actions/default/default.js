@@ -11,10 +11,18 @@ export const Default ={
         87:'jump',
         74:'weak_punch',
         73:'strong_punch',
+        32:'damage'
     },
     damage:(obj) =>{
-        if(obj.anim_request!="jump"){
-            obj.anim_hierarchy = {block:'walk', block:'weak_punch', block:'strong_punch'}
+        if(obj.anim_request!="jump" && obj.anim_request!="damage"){
+            obj.hitCount = (obj.hitCount==undefined)? 1:(obj.hitCount+1)
+            ///after 3 hits, the play will be able to move
+            if(obj.hitCount<=3){
+                obj.anim_hierarchy = {walk:'block', weak_punch:'block', strong_punch:'block'}
+            }else{
+                obj.anim_hierarchy = 1;
+                obj.hitCount=0
+            }
             obj.anim_request = "_damage"
             obj.block_reverse = true
             obj.inDraw_play = []
@@ -23,6 +31,7 @@ export const Default ={
     move: (obj , v_limit , direction , ev , a=0.1 ,  fric=0.05, fric_change = 0.01 ) =>{
         let conds = anim_conds(obj,"walk",1,true)
         if(conds[1]){
+            obj.hitCount=0 ///referent to the damage function
             acelerate(obj,a,v_limit,direction)
             if(obj.direction==direction)obj.reverse_anim = false
             else obj.reverse_anim = true
@@ -62,7 +71,7 @@ export const Default ={
                 func:  ()=>{
                     obj.Vy= -6
                     obj.anim_request = "_jumping_in_air"
-                    obj.anim_hierarchy= {block_anim:'walk'}
+                    obj.anim_hierarchy= {walk:'block_anim'}
                     obj.inDraw_play = []
 
                 }
@@ -89,7 +98,7 @@ export const Default ={
                 } 
             }
         }
-    },
+    }, 
     strong_punch: (obj) =>{
         let cond = anim_conds(obj,"strong_punch",2,false)
         if( cond[0] ){
@@ -134,13 +143,13 @@ function anim_conds(obj, anim, hierarchy , overlap_self=true){ ///conditions pat
         cond_to_play = true
         cond_generic = true
         for(let i in Hcurrent){
-            if(i=="block_anim"){  ///only blocks animation
-                if(anim == Hcurrent[i]){
+            if(Hcurrent[i]=="block_anim"){  ///only blocks animation
+                if(anim == i){
                     cond_to_play = false
                     cond_generic = true
                 }
-            }else if(i=="block"){ ///blocks actions
-                if(anim == Hcurrent[i]){
+            }else if(Hcurrent[i]=="block"){ ///blocks actions
+                if(anim == i){
                     cond_to_play = false
                     cond_generic = false
                 }
