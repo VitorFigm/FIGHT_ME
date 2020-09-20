@@ -1,6 +1,6 @@
 # FIGHT_ME
 
-A fighting game made only with pure javascript
+A fighting game made only with vanilla javascript
 
 ### [Click here to play](https://vitorfigm.github.io/FIGHT_ME/)
 
