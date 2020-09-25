@@ -1,7 +1,7 @@
 import {colision} from "/FIGHT_ME/modules.js"
 export function fight_P2P_colision_attack_loop(obj1,obj2){  ///colision and attack betwen players
     ///blocks go through
-    let top_of = (ref1,ref2)=>{
+    const top_of = (ref1,ref2)=>{
         return ref1.y+ref1.height <= ref2.y 
     }
     if( colision(obj1,obj2,7) ){

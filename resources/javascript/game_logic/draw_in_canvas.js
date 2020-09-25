@@ -3,9 +3,9 @@ export function canvas_draw(obj1,obj2,canvas_id,ground_y,fight){
     const context = canvas.getContext('2d')
 
     context.clearRect(0, 0, canvas.width, canvas.height)
-    if(fight!=undefined){
+    if(fight!=undefined)
         show_hp_bars(obj1,obj2,context)
-    }
+
     draw_char(context,obj1,ground_y)
     draw_char(context,obj2,ground_y)
 
@@ -25,8 +25,8 @@ function draw_char(context,obj,ground_y){
         ///reference
     const fix_position = obj.width/2 - (obj.direction*(obj.width/2))  /// put the same reference point even when we invert canvas.
         //animation
-    let sprite_fix =  sprite_obj.fixing_animX
-    if(sprite_fix==undefined)sprite_fix=0
+    const sprite_fix =  sprite_fix==undefined?
+                    0 : sprite_obj.fixing_animX
     const fix_anim_ratio = sprite_fix/obj.base_width
     const fix_anim = fix_anim_ratio*obj.width  ////anim goes fowards when played, it will fix it
    
@@ -70,13 +70,9 @@ function sprite_frames_canvas(obj){   ///return args to draw in canvas and origi
 
     const cols = sprite_ref.cols
 
-    if(new_request) {
-
-        obj.frame_control=1
-
-        if(obj.reverse_anim) obj.frame_control=sprite_ref.frames  
-        else obj.frame_control=1
-    }
+    if(new_request)
+        obj.frame_control = obj.reverse_anim?
+                            sprite_ref.frames : 1
 
     let frame = obj.frame_control
 
@@ -132,8 +128,8 @@ function show_hp_bars(obj1,obj2,context, width=40, height=5, margin=5){
     context.fillStyle = "#66CC33";
     if(obj1.hp<0)obj1.hp=0
     if(obj2.hp<0)obj2.hp=0
-    let hp_width1 = width*(obj1.hp/100)
-    let hp_width2 = width*(obj2.hp/100)
+    const hp_width1 = width*(obj1.hp/100)
+    const hp_width2 = width*(obj2.hp/100)
     context.fillRect( vw_px(margin), vh_px(margin) , vw_px(hp_width1), vh_px(height) )
     context.fillRect( vw_px(100-margin-hp_width2), vh_px(margin) , vw_px(hp_width2), vh_px(height) )
 

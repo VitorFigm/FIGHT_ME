@@ -29,7 +29,7 @@ export const Default ={
         }
     },
     move: (obj , v_limit , direction , ev , a=0.1 ,  fric=0.05, fric_change = 0.01 ) =>{
-        let conds = anim_conds(obj,"walk",1,true)
+        const conds = anim_conds(obj,"walk",1,true)
         if(conds[1]){
             obj.hitCount=0 ///referent to the damage function
             acelerate(obj,a,v_limit,direction)
@@ -56,7 +56,7 @@ export const Default ={
     },
     ////////
     jump:(obj) =>{
-        let cond = anim_conds(obj,"jump",4,false)
+        const cond = anim_conds(obj,"jump",4,false)
         if(cond[0]){
             reset(obj)
             obj.request_to_loop[0] = ()=>{
@@ -80,7 +80,7 @@ export const Default ={
         }
     },
     weak_punch: (obj) =>{
-        let cond = anim_conds(obj,"weak_punch",2,false)
+        const cond = anim_conds(obj,"weak_punch",2,false)
         if( cond[0] ){
             reset(obj)
             obj.Vx = 0.6*obj.direction   
@@ -100,7 +100,7 @@ export const Default ={
         }
     }, 
     strong_punch: (obj) =>{
-        let cond = anim_conds(obj,"strong_punch",2,false)
+        const cond = anim_conds(obj,"strong_punch",2,false)
         if( cond[0] ){
             reset(obj)
             obj.Vx = 0.3*obj.direction   

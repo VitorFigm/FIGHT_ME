@@ -19,20 +19,20 @@ export class Enemy extends Char{
     intelligence = (player)=>{
         ///jump to scape attack
         if(this.anim_request=="damage"){
-            let rand = Math.random()
+            const rand = Math.random()
             if(rand<=0.01)this.actions.jump(this)
         }
         if(this.request_ia_attack || Math.abs(player.x-this.x)<=10){
-            let rand = Math.random()
+            const rand = Math.random()
             if(rand<=0.1) this.actions.weak_punch(this)
             if(rand>=0.96) this.actions.strong_punch(this)
         }else{
             this.actions[this.go_to](this)
             ////decide which diretion to go
             if(this.frame_count>=30){
-                let rand = Math.random()
-                let dir = translate_direction(this.direction)
-                let opose = translate_direction(-this.direction)
+                const rand = Math.random()
+                const dir = translate_direction(this.direction)
+                const opose = translate_direction(-this.direction)
                     if(rand<0.7) this.go_to = dir
                 else if(rand>0.8) this.go_to = opose
                 this.frame_count=0
