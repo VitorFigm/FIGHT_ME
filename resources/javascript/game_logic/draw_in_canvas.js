@@ -25,7 +25,7 @@ function draw_char(context,obj,ground_y){
         ///reference
     const fix_position = obj.width/2 - (obj.direction*(obj.width/2))  /// put the same reference point even when we invert canvas.
         //animation
-    const sprite_fix =  sprite_fix==undefined?
+    const sprite_fix =  sprite_obj.fixing_animX==undefined?
                     0 : sprite_obj.fixing_animX
     const fix_anim_ratio = sprite_fix/obj.base_width
     const fix_anim = fix_anim_ratio*obj.width  ////anim goes fowards when played, it will fix it
