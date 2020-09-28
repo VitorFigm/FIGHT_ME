@@ -1,8 +1,8 @@
-import {fight_P2P_colision_attack_loop} from '/FIGHT_ME/modules.js'
-import {arena_limit} from '/FIGHT_ME/modules.js'
-import {canvas_draw} from '/FIGHT_ME/modules.js'
-import {velocity_logic,posChange} from '/FIGHT_ME/modules.js'
-import {change_dir} from '/FIGHT_ME/modules.js'
+import {fight_P2P_colision_attack_loop} from '../../../../modules.js'
+import {arena_limit} from '../../../../modules.js'
+import {canvas_draw} from '../../../../modules.js'
+import {velocity_logic,posChange} from '../../../../modules.js'
+import {change_dir} from '../../../../modules.js'
 
 export class Fight{
 

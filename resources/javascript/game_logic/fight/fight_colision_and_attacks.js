@@ -1,4 +1,4 @@
-import {colision} from "/FIGHT_ME/modules.js"
+import {colision}  from '../../../../modules.js'
 export function fight_P2P_colision_attack_loop(obj1,obj2){  ///colision and attack betwen players
     ///blocks go through
     const top_of = (ref1,ref2)=>{

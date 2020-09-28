@@ -1,9 +1,9 @@
 @font-face{
-    src: url('/FIGHT_ME/resources/font/ShadowsIntoLight-Regular.ttf');
+    src: url('../font/ShadowsIntoLight-Regular.ttf');
     font-family: shadow;
 }
 @font-face{
-    src: url("/FIGHT_ME/resources/font/courier-new.ttf");
+    src: url("../font/courier-new.ttf");
     font-family: courrier;
 }
 
@@ -16,7 +16,7 @@ body{
     height: 100vh;
     width: 100vw;
     font-family: shadow;
-    cursor: url('/FIGHT_ME/resources/cursor.png'),auto;
+    cursor: url('../cursor.png'),auto;
     font-size: 14pt;
     color:white;
     text-shadow: -0.1rem -0.2rem 0.2rem;
@@ -57,7 +57,7 @@ body a{
     font-size: 1rem;
     text-decoration: none;
     color:white;
-    cursor: url('/FIGHT_ME/resources/cursor.png'),auto;
+    cursor: url('../cursor.png'),auto;
 }
 @keyframes menu_items_animation{
     0%{

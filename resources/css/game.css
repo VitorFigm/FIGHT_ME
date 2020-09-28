@@ -1,5 +1,5 @@
 @font-face{
-    src: url('/FIGHT_ME/resources/font/ShadowsIntoLight-Regular.ttf');
+    src: url('../font/ShadowsIntoLight-Regular.ttf');
     font-family: shadow;
 }
 
@@ -14,7 +14,7 @@ body{
     background-color: black;
     overflow: hidden;
     z-index: 1;
-    cursor: url('/FIGHT_ME/resources/cursor.png'),auto;
+    cursor: url('../cursor.png'),auto;
 }
 body p{
     margin: 1vw;
@@ -26,7 +26,7 @@ canvas{
     position: absolute;
     width: 100vw;
     height: 100vh;
-    background-image: url("/FIGHT_ME/resources/background.svg");
+    background-image: url("../background.svg");
     background-repeat: no-repeat;
     background-size: cover;
     z-index: 2;
@@ -93,7 +93,7 @@ canvas{
     text-decoration: none;
     color: #F5F4C8;
     text-shadow: -0.1rem -0.2rem 0.5rem #F5F4C8;
-    cursor: url('/FIGHT_ME/resources/cursor.png'),auto;
+    cursor: url('../cursor.png'),auto;
 }
 #result_menu a:hover{
     color:rgb(189, 185, 185);

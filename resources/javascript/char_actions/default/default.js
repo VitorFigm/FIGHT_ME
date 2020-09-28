@@ -1,4 +1,4 @@
-import {default_loading_all_sprites} from '/FIGHT_ME/modules.js'
+import {default_loading_all_sprites} from '../../../../modules.js'
 
 export const Default ={
     name:"Default",
@@ -14,8 +14,8 @@ export const Default ={
         32:'damage'
     },
     damage:(obj) =>{
-        if(obj.anim_request!="jump" && obj.anim_request!="damage"){
-            obj.hitCount = (obj.hitCount==undefined)? 1:(obj.hitCount+1)
+        if(obj.anim_request!="jump"){
+            obj.hitCount = (obj.hitCount+1) || 1
             ///after 3 hits, the play will be able to move
             if(obj.hitCount<=3){
                 obj.anim_hierarchy = {walk:'block', weak_punch:'block', strong_punch:'block'}
