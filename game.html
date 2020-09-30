@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FIGHT ME</title>
-    <link rel="stylesheet" href="/resources/css/game.css">
+    <link rel="stylesheet" href="resources/css/game.css">
 </head>
 <body>
 
@@ -23,9 +23,9 @@
     <script>
         ///audio object
         let audios = {
-            fight_music:new Audio("../resources/audios/musics/alexander-nakarada-chase.mp3"),
-            weak_dmg:new Audio("../resources/audios/effects/weak_damage.wav"),
-            strong_dmg:new Audio("../resources/audios/effects/strong_damage.wav")
+            fight_music:new Audio("./resources/audios/musics/alexander-nakarada-chase.mp3"),
+            weak_dmg:new Audio("./resources/audios/effects/weak_damage.wav"),
+            strong_dmg:new Audio("./resources/audios/effects/strong_damage.wav")
         }
         audios.fight_music.play()
     </script>
@@ -54,7 +54,7 @@
 <script type="module">
     
     //events
-    import {key_events,Player,Enemy,Fight} from '../modules.js'
+    import {key_events,Player,Enemy,Fight} from './modules.js'
     key_events()
 
     //creating chars
