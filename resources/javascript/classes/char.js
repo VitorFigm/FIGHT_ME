@@ -1,4 +1,4 @@
-import {actions_obj} from '../../../../modules.js'
+import {actions_obj} from '/Fight_Game/modules.js'
 
 export class Char{
     ///actions control
