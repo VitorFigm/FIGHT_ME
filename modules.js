@@ -1,5 +1,6 @@
 ///this modules is to a way we rename and change path of modules without problems in the whole code
 
+
 import {keyboard,key_events} from "./resources/javascript/keyboard.js"
 export {keyboard,key_events};
 
