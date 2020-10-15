@@ -1,138 +1,158 @@
-@font-face{
-    src: url('../font/ShadowsIntoLight-Regular.ttf');
-    font-family: shadow;
+@font-face {
+  src: url("../font/ShadowsIntoLight-Regular.ttf");
+  font-family: shadow;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0px;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  overflow: hidden;
+  z-index: 1;
+  cursor: url("../cursor.png"), auto;
+}
+body .cursor_off {
+  cursor: none;
+}
+body p {
+  margin: 1vw;
+  font-family: shadow;
+  color: white;
 }
 
-body{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 0px;
-    width: 100vw;
-    height: 100vh;
+canvas {
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.25s;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../background.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: 2;
+}
+canvas:not(.invisible) {
+  opacity: 1;
+  visibility: visible;
+}
+
+#messages {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: shadow;
+  font-size: 10vh;
+  z-index: 3;
+}
+#messages.gameEnd {
+  animation: game_end 1s forwards;
+}
+#messages * {
+  z-index: 3;
+}
+#messages #get_ready {
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  color: #e6ae37;
+  transition: all 0.25s;
+}
+#messages #get_ready:not(.invisible) {
+  opacity: 1;
+  visibility: visible;
+}
+#messages #fight {
+  color: #cf5555;
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.25s;
+}
+#messages #fight:not(.invisible) {
+  opacity: 1;
+  visibility: visible;
+  animation: fight 0.25s;
+}
+#messages #result_menu {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 1s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#messages #result_menu:not(.invisible) {
+  opacity: 1;
+  visibility: visible;
+}
+#messages #result_menu a {
+  font-size: 1.5vw;
+  text-decoration: none;
+  color: #F5F4C8;
+  text-shadow: -0.1rem -0.2rem 0.5rem #F5F4C8;
+  cursor: url("../cursor.png"), auto;
+}
+#messages #result_menu a:hover {
+  color: #bdb9b9;
+  animation: bright 1s infinite ease-in-out;
+}
+#messages #result_menu #result.win {
+  color: green;
+}
+#messages #result_menu #result.lose {
+  color: red;
+}
+
+@keyframes bright {
+  50% {
+    text-shadow: -0.1rem -0.5rem 1rem #F5F4C8;
+  }
+}
+@keyframes fight {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+    transform: translateX(1vw);
+  }
+  40% {
+    opacity: 1;
+    transform: translateX(-1vw);
+  }
+  60% {
+    opacity: 1;
+    transform: translateX(1vw);
+  }
+  80% {
+    opacity: 1;
+    transform: translateX(-1vw);
+  }
+}
+@keyframes game_end {
+  10% {
+    background-color: red;
+  }
+  20% {
+    background-color: transparent;
+  }
+  30% {
+    background-color: red;
+  }
+  40% {
+    background-color: transparent;
+  }
+  100% {
     background-color: black;
-    overflow: hidden;
-    z-index: 1;
-    cursor: url('../cursor.png'),auto;
-}
-body p{
-    margin: 1vw;
-    font-family: shadow;
-    color:white
-}
-canvas{
-    display: none;
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    background-image: url("../background.svg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    z-index: 2;
-    animation: fade 1s;
+  }
 }
 
-
-
-#messages{
-    width:100vw;
-    height: 100vh;
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: shadow;
-    font-size: 10vh;
-    z-index: 3;
-}
-
-@keyframes game_end{
-    10%{
-      background-color: red;  
-    }
-    20%{
-        background-color: transparent;  
-    }
-    30%{
-        background-color: red;  
-      }
-    40%{
-        background-color: transparent;   
-    }
-    100%{
-        background-color: black;   
-    }
-}
-
-#messages *{
-    z-index: 3;
-}
-#get_ready{
-    position: absolute;
-    display: none;
-    color: rgb(230, 174, 55);
-    animation: fade 3s;
-}
-#fight{
-    color: rgb(207, 85, 85);
-    display: none;
-    position: absolute;
-    animation: fight 0.5s
-}
-
-
-#result_menu{
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    animation: fade 3s;
-}
-#result_menu a{
-    font-size: 1.5vw;
-    text-decoration: none;
-    color: #F5F4C8;
-    text-shadow: -0.1rem -0.2rem 0.5rem #F5F4C8;
-    cursor: url('../cursor.png'),auto;
-}
-#result_menu a:hover{
-    color:rgb(189, 185, 185);
-    animation: bright 1s infinite ease-in-out;
-}
-@keyframes bright{
-    50%{
-        text-shadow: -0.1rem -0.5rem 1rem #F5F4C8;
-    }
-}
-
-@keyframes fight{
-    0%{
-        opacity: 0;
-    }
-    20%{
-        opacity: 1;
-        transform: translateX(1vw);
-    }
-    40%{
-        opacity: 1;
-        transform: translateX(-1vw);
-    }
-    60%{
-        opacity: 1;
-        transform: translateX(1vw);
-    }
-    80%{
-        opacity: 1;
-        transform: translateX(-1vw);
-    }
-}
-
-@keyframes fade{
-    0%{
-        opacity: 0;
-    }
-}
-
-img{
-    transform: scaleX(-1);
-}
+/*# sourceMappingURL=game.css.map */

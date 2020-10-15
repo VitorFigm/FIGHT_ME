@@ -1,17 +1,22 @@
 import {actions_obj} from '/FIGHT_ME/modules.js'
 
-export class Char{
+export class Character{
     ///actions control
     main_loop;   /////loop of the child class
     loop_logic = (opponent)=>{
         this.main_loop(opponent)
-        const request = this.request_to_loop
-            if(request !=undefined){
-                for(const func of request){
-                    func()
-                }
-            }
+        this.doRequested_FunctionsInLoop()
     }
+
+    doRequested_FunctionsInLoop(){
+        const request = this.request_to_loop
+        if(request !=undefined){
+            for(const func of request){
+                func()
+            }
+        }
+    }
+
     //fight control
     damage;
     hp= 100; 
@@ -23,13 +28,11 @@ export class Char{
     Ay =0
     //friction
     fric = 0
-
     ///anim control
-    inDraw_play ///in the draw_in_canvas module, this variable request to call functions in a specific frame of an animation
-
+    inDraw_play ///on the draw_on_canvas module, this variable request to call functions on a specific frame of an animation
     anim_hierarchy = 0; //the hierarchy of the animation that is playing, the higher hierarchy can block the playing  of lower hierarchy animations 
-
-    constructor(args, pattern='Default'){
+    
+    constructor(args, pattern){
         const default_args = {
             x:20,
             y:0,
@@ -43,13 +46,11 @@ export class Char{
         this.actions = actions_obj[pattern] ///get a patern of functions to do when a key of a action is pressed
         this.sprites = this.actions.get_all_sprites()
         let stand_sprite = this.sprites['stand_anim']
-         ///to keep ratio in canvas draw
+         ///width to use in ratio calculation in draw_on_canvas module 
          stand_sprite.img.onload = ()=>{
             this.base_width = stand_sprite.img.width/stand_sprite.cols
-         }
+         }   
     }
-
-    
 }
 
 

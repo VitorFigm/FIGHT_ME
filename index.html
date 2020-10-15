@@ -1,64 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FIGHT ME</title>
 
     <!----style---->
-    <link rel="stylesheet" href="resources/css/menu.css">
+    <link rel="stylesheet" href="resources/css/index.css">
 </head>
+
 <body>
     <script>
         const menu_audio = new Audio("resources/audios/musics/makai-symphony-endless-storm.mp3")
-        
-        window.onload = () =>{
-            document.getElementsByTagName('body')[0].style.display ='flex'
+
+        window.onload = () => {
+            document.getElementsByTagName('body')[0].style.display = 'flex'
         }
-        function start(){
-            document.getElementById('start_btn').style.display="none"
+        function start() {
+            document.getElementById('start_btn').style.display = "none"
             menu_audio.play()
-            document.getElementById('menu_container').style.display ='flex'
+            document.getElementById('menu_container').style.display = 'flex'
         }
-        function tutorial_control(){
+
+        function tutorial_control() {
             let tutorial = document.getElementById('tutorial')
             let menu = document.getElementById('first_page')
-            if(tutorial.style.display !="flex"){
-                tutorial.style.display = "flex"
-                menu.style.display = "none"
-            }else{
-                tutorial.style.display = "none"
-                menu.style.display = "flex"
+            if (!tutorial.classList.contains('visible') ) {
+                tutorial.classList.add('visible')
+                menu.classList.remove('visible')
+            } else {
+                tutorial.classList.remove('visible')
+                menu.classList.add('visible')
             }
         }
     </script>
 
-        <a onclick="start()" id="start_btn">CLICK HERE TO START THE GAME</a>
+    <a onclick="start()" id="start_btn">CLICK HERE TO START THE GAME</a>
 
-        <div id="menu_container">
-            <h1 id="title">
-                FIGHT ME
-            </h1>
-            <div id="menu_items">
-    
-                <div id="first_page">
-                    <a href="game.html">START</a>
-                    <a onclick="tutorial_control()">HOW TO PLAY</a>
-                    <a href="https://github.com/VitorFigm">MY GITHUB PAGE</a>
-                </div>
-                
-    
-                <div id="tutorial"> 
-                    <img src="resources/tutorial.svg">
-                    <a onclick="tutorial_control()" >CLOSE TUTORIAL</a>
-                </div>
-    
-    
+    <div id="menu_container">
+        <h1 id="title">
+            FIGHT ME
+        </h1>
+        <div id="menu_items">
+
+            <div id="first_page" class="visible">
+                <a href="game.html">START</a>
+                <a onclick="tutorial_control()">HOW TO PLAY</a>
+                <a href="https://github.com/VitorFigm">MY GITHUB PAGE</a>
             </div>
+
+
+            <div id="tutorial">
+                <img src="resources/tutorial.svg">
+                <a onclick="tutorial_control()">CLOSE TUTORIAL</a>
+            </div>
+
+
         </div>
-        
-        
-        
+    </div>
+
+
+
 
 </body>
+
 </html>

@@ -2,63 +2,63 @@ import {default_loading_all_sprites} from '/FIGHT_ME/modules.js'
 
 export const Default ={
     name:"Default",
-
     get_all_sprites: default_loading_all_sprites,
-
     action_of_key:{
-        68:'right',
-        65:'left',
-        87:'jump',
-        74:'weak_punch',
-        73:'strong_punch',
-        32:'damage'
+        'd':'right',
+        'a':'left',
+        'w':'jump',
+        'j':'weak_punch',
+        'i':'strong_punch',
     },
+
     damage:(obj) =>{
-        if(obj.anim_request!="jump"){
+        if(obj.anim_request!="jump"){ ///jump cancels damage animation
             obj.hitCount = (obj.hitCount+1) || 1
             ///after 3 hits, the play will be able to move
             if(obj.hitCount<=3){
-                obj.anim_hierarchy = {walk:'block', weak_punch:'block', strong_punch:'block'}
+                obj.anim_hierarchy = {walk:'block', weak_punch:'block', strong_punch:'block'} 
+                //blocks thoses animation of playing
             }else{
                 obj.anim_hierarchy = 1;
                 obj.hitCount=0
             }
             obj.anim_request = "_damage"
-            obj.block_reverse = true
             obj.inDraw_play = []
         }
     },
-    move: (obj , v_limit , direction , ev , a=0.1 ,  fric=0.05, fric_change = 0.01 ) =>{
-        const conds = anim_conds(obj,"walk",1,true)
-        if(conds[1]){
+
+    move: (obj , v_limit , direction , ev , args={} ) =>{
+        const {a=0.1 ,  fric=0.05, fric_change = 0.01} = args
+        const _canPlay = canPlay(obj,"walk",1,true)
+        if(_canPlay.animations ) PlayAnimation("walk",1,obj)
+        if(_canPlay.functions){
             obj.hitCount=0 ///referent to the damage function
             acelerate(obj,a,v_limit,direction)
-            if(obj.direction==direction)obj.reverse_anim = false
-            else obj.reverse_anim = true
+            obj.reverse_anim = obj.direction==direction?false:true
         }
-        
-
-        if(ev=="release" && conds[1]){
+        if(ev=="release" && _canPlay.functions){
             obj.Ax =0 
-
             obj.fric+= fric_change    ///makes friction fallow the animation
             if(obj.fric > fric)obj.fric = fric
             
         }
     },
+
     right: (obj,ev) =>{ 
         obj.actions.move(obj, 0.5, 1 ,ev)
     },  
+
     ////////
     left: (obj,ev) =>{
-
         obj.actions.move(obj, 0.5, -1 ,ev)
     },
+
     ////////
     jump:(obj) =>{
-        const cond = anim_conds(obj,"jump",4,false)
-        if(cond[0]){
-            reset(obj)
+        const _canPlay = canPlay(obj,"jump",4,false)
+        if(_canPlay.animations){
+            PlayAnimation("jump",4,obj)
+            stop(obj)
             obj.request_to_loop[0] = ()=>{
                 if(obj.Vy>0){
                     obj.reverse_anim = true
@@ -71,7 +71,7 @@ export const Default ={
                 func:  ()=>{
                     obj.Vy= -6
                     obj.anim_request = "_jumping_in_air"
-                    obj.anim_hierarchy= {walk:'block_anim'}
+                    obj.anim_hierarchy = {walk:'block_anim'}
                     obj.inDraw_play = []
 
                 }
@@ -80,9 +80,10 @@ export const Default ={
         }
     },
     weak_punch: (obj) =>{
-        const cond = anim_conds(obj,"weak_punch",2,false)
-        if( cond[0] ){
-            reset(obj)
+        const _canPlay = canPlay(obj,"weak_punch",2,false)
+        if( _canPlay.animations ){
+            PlayAnimation("weak_punch",4,obj)
+            stop(obj)
             obj.Vx = 0.6*obj.direction   
             obj.inDraw_play[0] = {
                 in:30,
@@ -100,9 +101,10 @@ export const Default ={
         }
     }, 
     strong_punch: (obj) =>{
-        const cond = anim_conds(obj,"strong_punch",2,false)
-        if( cond[0] ){
-            reset(obj)
+        const _canPlay = canPlay(obj,"strong_punch",2,false)
+        if( _canPlay.animations ){
+            PlayAnimation("strong_punch",4,obj)
+            stop(obj)
             obj.Vx = 0.3*obj.direction   
             obj.inDraw_play[0] = {
                 in:40,
@@ -114,7 +116,6 @@ export const Default ={
                 in:"end",
                 func:  ()=>{
                     obj.Vx = 0
-                    
                     obj.damage = undefined
                 }
             }   
@@ -122,54 +123,51 @@ export const Default ={
     }, 
         
 }
+function PlayAnimation(anim,hierarchy,obj){
+        obj.anim_hierarchy= hierarchy
+        obj.anim_request = "_"+anim
+}
 
-function anim_conds(obj, anim, hierarchy , overlap_self=true){ ///conditions pattern and define hierachy of animations(to avoid multiples conditionals)
-    let cond_to_play; 
-    let cond_generic;
+function canPlay(obj, anim, hierarchy , AnimationOverlaps_self=true){
+    let canPlayAnimations; 
+    let canPlayFunctions;
+    if(typeof(obj.anim_hierarchy)==="number")
+        [canPlayAnimations, canPlayFunctions] = AllowPlaying__Number__(obj,anim,AnimationOverlaps_self, obj.anim_hierarchy, hierarchy)
+    else
+        [canPlayAnimations, canPlayFunctions] = AllowPlaying__Object__(anim,obj.anim_hierarchy)
+    ///request animation
+    return {animations:canPlayAnimations, functions:canPlayFunctions}
+}
 
-    const Hcurrent = obj.anim_hierarchy
-    ///if Hcurrent is number
-    const normal_hierarchy = ()=>{
-        if(overlap_self){
-            cond_to_play =  obj.anim_request!=anim  && Hcurrent <=hierarchy 
-            cond_generic = Hcurrent <= hierarchy
-        }else{
-            cond_to_play =  obj.anim_request!=anim && Hcurrent < hierarchy
-            cond_generic = Hcurrent < hierarchy
-        }
+function AllowPlaying__Number__(obj,anim,AnimationOverlaps_self, currentHierarchy, hierarchy){
+    let canPlayAnimations,canPlayFunctions; 
+    if(AnimationOverlaps_self){
+        canPlayAnimations =  obj.anim_request!=anim  && currentHierarchy <=hierarchy 
+        canPlayFunctions = currentHierarchy <= hierarchy
+    }else{
+        canPlayAnimations =  obj.anim_request!=anim && currentHierarchy < hierarchy
+        canPlayFunctions = currentHierarchy < hierarchy
     }
-    ///if is obj
-    const obj_hierarchy = ()=>{
-        cond_to_play = true
-        cond_generic = true
-        for(let i in Hcurrent){
-            if(Hcurrent[i]=="block_anim"){  ///only blocks animation
-                if(anim == i){
-                    cond_to_play = false
-                    cond_generic = true
-                }
-            }else if(Hcurrent[i]=="block"){ ///blocks actions
-                if(anim == i){
-                    cond_to_play = false
-                    cond_generic = false
-                }
+    return [canPlayAnimations, canPlayFunctions]
+}
+
+function AllowPlaying__Object__(anim,currentHierarchy){
+    let canPlayAnimations = true
+    let canPlayFunctions = true
+    for(let i in currentHierarchy){
+        if(currentHierarchy[i]=="block_anim"){  ///only blocks animation
+            if(anim == i){
+                canPlayAnimations = false
+                canPlayFunctions = true
+            }
+        }else if(currentHierarchy[i]=="block"){ ///blocks actions
+            if(anim == i){
+                canPlayAnimations = false
+                canPlayFunctions = false
             }
         }
     }
-    ///define hierarchy function to use
-    const hierarchy_function = typeof(Hcurrent)=="number"?
-        normal_hierarchy:obj_hierarchy
-    hierarchy_function()
-
-    ///request animation
-    if(cond_to_play){
-        obj.anim_hierarchy= hierarchy
-        obj.anim_request = "_"+anim
-    }
-    
-    return [cond_to_play , cond_generic]
-    
-    
+    return [canPlayAnimations, canPlayFunctions]
 }
 
 function acelerate(obj,a,limit,direction){
@@ -177,7 +175,7 @@ function acelerate(obj,a,limit,direction){
     obj.Ax = a*direction   ///acelerates
     if(Math.abs(obj.Vx) > limit)obj.Vx = limit*direction; ///limits speed
 }
-function reset(obj){
+function stop(obj){
     obj.reverse_anim = false
     obj.Vx=0
     obj.Ax=0

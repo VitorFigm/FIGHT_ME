@@ -1,35 +1,35 @@
 let gravity = 0.3
 
-export function velocity_logic(obj){
-    let def_vel = (axis)=>{
-        obj['V'+axis] += obj['A'+axis]
-
-    let V_direction = obj['V'+axis]!=0 ?
-        Math.abs(obj['V'+axis])/obj['V'+axis] :
-        0
-    
-    if(axis=='x'){
-        ///friction
-        obj.Vx -= V_direction*obj.fric
-    }
-
-    ////ground limit
-    if(axis == 'y'){
-        obj.Vy += gravity
+export function velocityLogic(obj){
+    def_velocity('x')
+    def_velocity('y')
+    function def_velocity(axis){
+        obj['V'+axis] += obj['A'+axis] ////accelerate
+        let V_direction = obj['V'+axis]!=0 ? getSignal(obj['V'+axis]):0 ///get direction
+        if(axis=='x'){
+            ///apply friction
+            obj.Vx -= V_direction*obj.fric
+        }
+        ////ground limit
+        if(axis == 'y'){
+            obj.Vy += gravity ///apply gravity acceleration
+        }
     }
 }
 
-    def_vel('x')
-    def_vel('y')
-
+function getSignal(value){
+    return value<0? -1:1
 }
-
-export function posChange(obj){
-
+export function positionChange(obj){
     obj.x += obj.Vx
     obj.y += obj.Vy
-    if(obj.y>obj.block_y){
-        obj.Vy = 0; ///cannot be 0, due the jump colision
-        obj.y=obj.block_y;
+}
+export function changeDirection(obj1,obj2){
+    if(obj1.x > obj2.x){
+        obj1.direction = -1;
+        obj2.direction = 1;
+    }else{
+        obj1.direction = 1;
+        obj2.direction = -1;
     }
 }

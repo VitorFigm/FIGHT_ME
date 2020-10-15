@@ -1,0 +1,176 @@
+@font-face{
+    src: url('../font/ShadowsIntoLight-Regular.ttf');
+    font-family: shadow;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0px;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    overflow: hidden;
+    z-index: 1;
+    cursor: url('../cursor.png'),auto;
+
+    & .cursor_off{
+        cursor:none;
+    }
+
+    p{
+        margin: 1vw;
+        font-family: shadow;
+        color:white
+    }
+}
+
+
+canvas{
+    position: absolute;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.25s;
+    &:not(.invisible){
+        opacity: 1;
+        visibility: visible;
+    }
+
+    width: 100vw;
+    height: 100vh;
+
+    background-image: url("../background.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 2;
+    
+}
+
+
+
+#messages{
+    width:100vw;
+    height: 100vh;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: shadow;
+    font-size: 10vh;
+    z-index: 3;
+    &.gameEnd{
+        animation: game_end 1s forwards;
+    }
+    *{
+        z-index: 3;
+    }
+    #get_ready{
+        position: absolute;
+
+        opacity: 0;
+        visibility: hidden;
+        color: rgb(230, 174, 55);
+        transition: all 0.25s;
+        &:not(.invisible){
+            opacity: 1;
+            visibility: visible;
+        }
+
+    }
+    #fight{
+            color: rgb(207, 85, 85);
+            position: absolute;
+
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.25s;
+            &:not(.invisible){
+                opacity: 1;
+                visibility: visible;
+                animation: fight 0.25s;
+            }    
+    }
+
+    #result_menu{
+        opacity: 0;
+        visibility: hidden;
+        transition: all 1s;
+        &:not(.invisible){
+            opacity: 1;
+            visibility: visible;
+        } 
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        a{
+            font-size: 1.5vw;
+            text-decoration: none;
+            color: #F5F4C8;
+            text-shadow: -0.1rem -0.2rem 0.5rem #F5F4C8;
+            cursor: url('../cursor.png'),auto;
+            &:hover{
+                color:rgb(189, 185, 185);
+                animation: bright 1s infinite ease-in-out;
+            }
+        }
+        #result{
+            &.win{
+                color:green;
+            }
+            &.lose{
+                color:red;
+            }
+        }
+    }
+}
+@keyframes bright{
+    50%{
+        text-shadow: -0.1rem -0.5rem 1rem #F5F4C8;
+    }
+}
+
+
+@keyframes fight{
+    0%{
+        opacity: 0;
+    }
+    20%{
+        opacity: 1;
+        transform: translateX(1vw);
+    }
+    40%{
+        opacity: 1;
+        transform: translateX(-1vw);
+    }
+    60%{
+        opacity: 1;
+        transform: translateX(1vw);
+    }
+    80%{
+        opacity: 1;
+        transform: translateX(-1vw);
+    }
+}
+
+
+
+@keyframes game_end{
+    10%{
+      background-color: red;  
+    }
+    20%{
+        background-color: transparent;  
+    }
+    30%{
+        background-color: red;  
+      }
+    40%{
+        background-color: transparent;   
+    }
+    100%{
+        background-color: black;   
+    }
+}

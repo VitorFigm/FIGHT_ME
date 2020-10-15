@@ -1,4 +1,4 @@
-export function colision(obj1,obj2,errorx,errory=0){ ///check if colisions blocks intersects or will intersect
+export function checkColision(obj1,obj2,errorx,errory=0){ ///check if colisions blocks intersects or will intersect
     let will_intersect = (axis,property,error)=>{ 
         ///points
         ///obj1

@@ -4,11 +4,11 @@ export const keyboard = {}
 
 export function key_events(){
     window.onkeydown = (e)=>{
-            keyboard[e.keyCode] = "press"
+            keyboard[e.key] = "press"
     }
 
     window.onkeyup = (e)=>{
-        keyboard[e.keyCode] = "release"
+        keyboard[e.key] = "release"
     }
  
 }

@@ -1,74 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FIGHT ME</title>
     <link rel="stylesheet" href="resources/css/game.css">
 </head>
+
 <body>
 
-<p>Loading</p>
+    <p>Loading</p>
 
-<canvas id="canvas"> </canvas>
+    <canvas id="canvas" class="invisible"> </canvas>
 
-<div id="messages">
-    <div  id="get_ready">GET READY</div>
-    <div id="fight">FIGHT !!!!</div>
+    <div id="messages">
+        <div id="get_ready" class="invisible">GET READY</div>
+        <div id="fight" class="invisible">FIGHT !!!!</div>
 
-    <div id="result_menu">
-        <div id="result"></div>
-        <a href="/FIGHT_ME/index.html">BACK TO MENU</a>
+        <div id="result_menu" class="invisible">
+            <div id="result"></div>
+            <a href="/index.html">BACK TO MENU</a>
+        </div>
+        <script>
+            ///audio object
+            let audios = {
+                fight_music: new Audio("./resources/audios/musics/alexander-nakarada-chase.mp3"),
+                weak_dmg: new Audio("./resources/audios/effects/weak_damage.wav"),
+                strong_dmg: new Audio("./resources/audios/effects/strong_damage.wav")
+            }
+            audios.fight_music.play()
+        </script>
     </div>
+
     <script>
-        ///audio object
-        let audios = {
-            fight_music:new Audio("./resources/audios/musics/alexander-nakarada-chase.mp3"),
-            weak_dmg:new Audio("./resources/audios/effects/weak_damage.wav"),
-            strong_dmg:new Audio("./resources/audios/effects/strong_damage.wav")
+        function canvas_resize() {
+            let canvas = document.getElementById('canvas')
+
+            window.my_width = 1920
+            window.my_height = 1080
+
+
+            canvas.width = window.my_width
+            canvas.height = window.my_height
+
         }
-        audios.fight_music.play()
+        canvas_resize()
+        window.onresize = canvas_resize; 
     </script>
-</div>
-
-<script>
-    function canvas_resize(){
-        let canvas = document.getElementById('canvas')
-        
-        window.my_width = 1920
-        window.my_height =1080
-
-
-        canvas.width = window.my_width
-        canvas.height = window.my_height
-        
-    }
-    canvas_resize()
-    window.onresize = canvas_resize; 
-</script>
 
 
 </body>
 
 <!----game logic---->
 <script type="module">
-    
     //events
-    import {key_events,Player,Enemy,Fight} from '/FIGHT_ME/modules.js'
+    import { key_events, Player, Enemy, Fight } from '/FIGHT_ME/modules.js'
     key_events()
 
     //creating chars
-    let player = new Player({can_move:false})
-
-    let enemy = new Enemy({can_move:false})
-
+    let player = new Player({ can_move: false })
+    let enemy = new Enemy({ can_move: false })
     ///game logic
-    window.onload = ()=>{
-        let fight = new Fight(player,enemy)
+    window.onload = () => {
+        let fight = new Fight(player, enemy)
         ///play fade animation
-        document.getElementsByTagName('canvas')[0].style.display = "flex" 
+        document.getElementsByTagName('canvas')[0].classList.remove('invisible')
     }
-   
+
 
 </script>
 
