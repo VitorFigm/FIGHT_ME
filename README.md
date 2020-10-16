@@ -2,7 +2,7 @@
 
 A fighting game made only with vanilla javascript
 
-### [Click here to play](https://vitorfigm.github.io/)
+### [Click here to play](https://vitorfigm.github.io/FIGHT_ME/)
 
 # Pretty and original design
 Everything in this project except the sounds was made by me, including the menu design, the 2d character and the background image.
