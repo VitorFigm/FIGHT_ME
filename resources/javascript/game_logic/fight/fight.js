@@ -6,11 +6,11 @@ import { changeDirection } from '/FIGHT_ME/modules.js'
 
 export class Fight {
     constructor(player, enemy, args={}) {
-        player.can_move = true; enemy.can_move = false
+        player.can_move = false; enemy.can_move = false
         hideCursor()
         requestAnimationFrame(() => { this.loop(player, enemy, args) })
         readyFight_Messages(player, enemy)
-        // players_canMove_afterTime(player,enemy,3000)
+        players_canMove_afterTime(player,enemy,3000)
 
         function readyFight_Messages(){
             showElement_afterTime('get_ready', 1000)
