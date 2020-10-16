@@ -6,18 +6,32 @@ import { changeDirection } from '/FIGHT_ME/modules.js'
 
 export class Fight {
     constructor(player, enemy, args={}) {
+        player.can_move = true; enemy.can_move = false
         hideCursor()
-        //loop logics
         requestAnimationFrame(() => { this.loop(player, enemy, args) })
         readyFight_Messages(player, enemy)
-        players_canMove_afterTime(player,enemy,3000)
+        // players_canMove_afterTime(player,enemy,3000)
+
+        function readyFight_Messages(){
+            showElement_afterTime('get_ready', 1000)
+            showElement_afterTime('fight', 2000)
+            hideElement_afterTime('get_ready', 2000)
+            hideElement_afterTime('fight', 3000)
+        }
+
+        function players_canMove_afterTime(player,enemy,time) {
+            setTimeout(
+                () => {
+                    player.can_move = true; enemy.can_move = true
+                }, time)
+        }
+        
     }
 
     loop = (player, enemy, args) => {
-        const { canvas_id = "canvas", ground_y = 80, arena_width = 100 } = args
-        ///calling player loop logic function
-        player.loop_logic()
-        enemy.loop_logic(player)
+        const { canvas_id = "canvas", groundY = 80, arena_width = 100 } = args
+        player.toDo_onGameLoop()
+        enemy.toDo_onGameLoop()
         ///game logic loops
         velocityLogic(player, 0)
         velocityLogic(enemy, 0)
@@ -27,48 +41,39 @@ export class Fight {
         limitCharacter_to_arenaWidth(player, arena_width)
         limitCharacter_to_arenaWidth(enemy, arena_width)
         ///draw  (needs to be the last loop)
-        canvas_draw(player, enemy, canvas_id, ground_y, this)
+        canvas_draw(player, enemy, canvas_id, groundY, this)
         //keep player and enemy face to face
         changeDirection(player, enemy)
         if (player.hp != 0 && enemy.hp != 0) {
             requestAnimationFrame(() => { this.loop(player, enemy, args) })
         } else {
             ///result
-            FightResult(player)
+            FightResult()
+        }
+
+        function FightResult(){
+            gameEndAnimation()
+            showCursor()
+            showElement('result_menu')
+            show_result()
+
+            function gameEndAnimation() {
+                document.getElementById("messages").classList.add('gameEnd')
+            }
+
+            function show_result() {
+                let result = document.getElementById("result")
+                if (player.hp == 0) {
+                    result.innerHTML = "YOU LOSE"
+                    result.classList.add('lose')
+                } else {
+                    result.innerHTML = "YOU WIN"
+                    result.classList.add('win')
+                }
+            }
         }
     }
 }
-
-function readyFight_Messages(){
-    showElement_afterTime('get_ready', 1000)
-    showElement_afterTime('fight', 2000)
-    hideElement_afterTime('get_ready', 2000)
-    hideElement_afterTime('fight', 3000)
-}
-
-function FightResult(player){
-    gameEndAnimation()
-    showCursor()
-    showElement('result_menu')
-    show_result(player)
-}
-
-function gameEndAnimation() {
-    document.getElementById("messages").classList.add('gameEnd')
-}
-
-function show_result(player) {
-    let result = document.getElementById("result")
-    if (player.hp == 0) {
-        result.innerHTML = "YOU LOSE"
-        result.classList.add('lose')
-    } else {
-        result.innerHTML = "YOU WIN"
-        result.classList.add('win')
-    }
-}
-
-
 
 function hideCursor() {
     document.getElementsByTagName('body')[0].classList.add('cursor_off')
@@ -93,13 +98,5 @@ function hideElement(element) {
 function hideElement_afterTime(element, time) {
     setTimeout(
         () => hideElement(element)
-        , time)
-}
-
-function players_canMove_afterTime(player,enemy,time) {
-    setTimeout(
-        () => {
-            player.can_move = true; enemy.can_move = true
-        }
         , time)
 }

@@ -1,15 +1,15 @@
-export function limitCharacter_to_arenaWidth(obj,arenaWidth){
-    if(obj.x<0){
-        obj.x=0;
-        obj.Vx =0
+export function limitCharacter_to_arenaWidth(character,arenaWidth){
+    if(character.x<0){
+        character.x=0;
+        character.Vx =0
     }
-    if(obj.x>arenaWidth-obj.width){
-        obj.x=arenaWidth-obj.width;
-        obj.Vx =0
+    if(character.x>arenaWidth-character.width){
+        character.x=arenaWidth-character.width;
+        character.Vx =0
     }
 
-    if(obj.y>0){ //Blocks go through the ground
-        obj.y=0
-        obj.Vy = 0;
+    if(character.y>0){ //Blocks go through the ground
+        character.y=0
+        character.Vy = 0;
     }
 }

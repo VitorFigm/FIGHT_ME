@@ -3,54 +3,61 @@ import { Character } from '/FIGHT_ME/modules.js'
 export class Enemy extends Character {
     frame_count = 0
     go_to = "left";
-    constructor(args, pattern = 'Default') {
+    constructor(player,args, pattern = 'default') {
         let super_default_args = { x: 70, direction: -1 }
         super({ ...super_default_args, ...args }, pattern)
-        this.main_loop = (player) => {
-            if (this.can_move == true) this.intelligence(player)
+        this.player = player
+        this.toDo_onParentLoop = () => {
+            if (this.can_move == true) this.intelligence()
         }
     }
-    intelligence = (player) => {
+
+    intelligence(){
         ///jump to scape attack
-        JumpIfNeedsTo(this)
-        if (PlayerIsNear(player, this)) {
-            DecidesIf_WantToAttack(this)
+        this.JumpIfNeedsTo()
+        if (this.PlayerIsNear()) {
+            this.DecidesIf_WantToAttack()
         } else {
-            this.actions[this.go_to](this) ///walks in the decided direction
-            ////decide which diretion to go
-            decideDirection(this)
+            this.walkToDecidedDirection() ///walks in the decided direction
+            if (this.frame_count >= 30) {
+                this.decideDirection()
+                this.frame_count = 0
+            }
             this.frame_count++
         }
     }
-}
 
-
-function JumpIfNeedsTo(enemy) {
-    if (enemy.anim_request == "damage") {
-        const rand = Math.random()
-        if (rand <= 0.01) enemy.actions.jump(enemy)
+    JumpIfNeedsTo(){
+        if (this.animRequest == "damage") {
+            const rand = Math.random()
+            if (rand <= 0.01) this.actions.jump(this)
+        }
     }
-}
-function PlayerIsNear(player, enemy) {
-    return Math.abs(player.x - enemy.x) <= 10
-}
 
-function DecidesIf_WantToAttack(enemy) {
-    const rand = Math.random()
-    if (rand <= 0.1) enemy.actions.weak_punch(enemy)
-    if (rand >= 0.96) enemy.actions.strong_punch(enemy)
-}
-
-function decideDirection(enemy) {
-    if (enemy.frame_count >= 30) {
-        const rand = Math.random()
-        const dir = translate_direction(enemy.direction)
-        const opose = translate_direction(-enemy.direction)
-        if (rand < 0.7) enemy.go_to = dir
-        else if (rand > 0.8) enemy.go_to = opose
-        enemy.frame_count = 0
+    PlayerIsNear(){
+        return Math.abs(this.player.x - this.x) <= 10
     }
+
+    DecidesIf_WantToAttack(){
+        const rand = Math.random()
+        if (rand <= 0.1) this.actions.weak_punch(this)
+        if (rand >= 0.96) this.actions.strong_punch(this)
+    }
+
+    walkToDecidedDirection(){
+        this.actions[this.go_to](this)
+    }
+
+    decideDirection(){
+            const rand = Math.random()
+            const dir = translate_direction(this.direction)
+            const opose = translate_direction(-this.direction)
+            if (rand < 0.7) this.go_to = dir
+            else if (rand > 0.8) this.go_to = opose
+    }
+
 }
+
 
 
 function translate_direction(dir) {

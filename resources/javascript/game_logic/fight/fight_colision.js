@@ -14,24 +14,25 @@ export function fight_P2P_colision(player,enemy){
     }
     ///Attack colision
     if( checkColision(player,enemy,6,1) ){
-        apply_attack(player,enemy)
+        apply_attack()
     }
-}
 
-function apply_attack(player,enemy,mult=1){ ////mult: damage bonus
-    let func = (ref1,ref2) =>{
-        if( ref1.damage != undefined ){
-            ref2.hp-= ref1.damage*mult;
-            ref2.actions.damage(ref2)
-            ///audio
-            if(ref1.damage<=5)audios.weak_dmg.play()
-            else audios.strong_dmg.play()
-
-            ref2.got_damage = true
-            ref1.damage=undefined ///reset damage
-        }
-    }
-    func(player,enemy)
-    func(enemy,player)
+    function apply_attack(DamageMultiplier=1){
+        let func = (ref1,ref2) =>{
+            if( ref1.damage != undefined ){
+                ref2.hp-= ref1.damage*DamageMultiplier;
+                ref2.actions.damage(ref2)
+                ///audio
+                if(ref1.damage<=5)audios.weak_dmg.play()
+                else audios.strong_dmg.play()
     
+                ref2.got_damage = true
+                ref1.damage=undefined ///reset damage
+            }
+        }
+        func(player,enemy)
+        func(enemy,player)
+        
+    }
 }
+

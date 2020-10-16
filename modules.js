@@ -6,14 +6,11 @@ export {keyboard,key_events};
 
     ///character_actions
         //default
-        import {Default} from "./resources/javascript/char_actions/default/default.js"
-        export {Default};
+        import {defaultActions} from "./resources/javascript/char_actions/default/defaultActions.js"
+        export {defaultActions};
 
         import {default_loading_all_sprites} from "./resources/javascript/char_actions/default/default_animations.js"
         export {default_loading_all_sprites};
-        
-    import {actions_obj} from "./resources/javascript/char_actions/main_object.js"
-    export {actions_obj};
     
     ///classes
     import {Character} from "./resources/javascript/classes/Character.js"

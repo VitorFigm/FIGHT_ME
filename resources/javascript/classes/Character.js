@@ -1,14 +1,17 @@
-import {actions_obj} from '/FIGHT_ME/modules.js'
+import {defaultActions} from '/FIGHT_ME/modules.js'
+const allActionPaterns = {
+    'default':defaultActions
+}
 
 export class Character{
     ///actions control
-    main_loop;   /////loop of the child class
-    loop_logic = (opponent)=>{
-        this.main_loop(opponent)
-        this.doRequested_FunctionsInLoop()
+    toDo_onParentLoop;
+    toDo_onGameLoop = (opponent)=>{
+        this.toDo_onParentLoop(opponent)
+        this.doRequestedFunctionsOnLoop()
     }
 
-    doRequested_FunctionsInLoop(){
+    doRequestedFunctionsOnLoop(){
         const request = this.request_to_loop
         if(request !=undefined){
             for(const func of request){
@@ -29,8 +32,8 @@ export class Character{
     //friction
     fric = 0
     ///anim control
-    inDraw_play ///on the draw_on_canvas module, this variable request to call functions on a specific frame of an animation
-    anim_hierarchy = 0; //the hierarchy of the animation that is playing, the higher hierarchy can block the playing  of lower hierarchy animations 
+    onDrawCall ///on the draw_on_canvas module, this variable request to call functions on a specific frame of an animation
+    animHierarchy = 0; //the hierarchy of the animation that is playing, the higher hierarchy can block the playing  of lower hierarchy animations 
     
     constructor(args, pattern){
         const default_args = {
@@ -43,12 +46,12 @@ export class Character{
         }
         Object.assign(this,{...default_args,...args})
 
-        this.actions = actions_obj[pattern] ///get a patern of functions to do when a key of a action is pressed
+        this.actions = allActionPaterns[pattern] ///get a patern of functions to do when a key of a action is pressed
         this.sprites = this.actions.get_all_sprites()
-        let stand_sprite = this.sprites['stand_anim']
+        let standSprite = this.sprites['stand_anim']
          ///width to use in ratio calculation in draw_on_canvas module 
-         stand_sprite.img.onload = ()=>{
-            this.base_width = stand_sprite.img.width/stand_sprite.cols
+         standSprite.spriteImage.onload = ()=>{
+            this.base_width = standSprite.spriteImage.width/standSprite.cols
          }   
     }
 }

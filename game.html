@@ -59,8 +59,8 @@
     key_events()
 
     //creating chars
-    let player = new Player({ can_move: false })
-    let enemy = new Enemy({ can_move: false })
+    let player = new Player()
+    let enemy = new Enemy(player)
     ///game logic
     window.onload = () => {
         let fight = new Fight(player, enemy)
