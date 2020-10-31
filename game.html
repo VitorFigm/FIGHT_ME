@@ -1,23 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FIGHT ME</title>
     <link rel="stylesheet" href="resources/css/game.css">
 </head>
-
 <body>
-
     <p>Loading</p>
-
     <canvas id="canvas" class="invisible"> </canvas>
-
     <div id="messages">
         <div id="get_ready" class="invisible">GET READY</div>
         <div id="fight" class="invisible">FIGHT !!!!</div>
-
         <div id="result_menu" class="invisible">
             <div id="result"></div>
             <a href="/FIGHT_ME/index.html">BACK TO MENU</a>
@@ -32,32 +26,23 @@
             audios.fight_music.play()
         </script>
     </div>
-
     <script>
         function canvas_resize() {
             let canvas = document.getElementById('canvas')
-
-            window.my_width = 1920
-            window.my_height = 1080
-
-
-            canvas.width = window.my_width
-            canvas.height = window.my_height
-
+            window.image_definition_x = 1920
+            window.image_definition_y = 1080
+            canvas.width = window.image_definition_x
+            canvas.height = window.image_definition_y
         }
         canvas_resize()
         window.onresize = canvas_resize; 
     </script>
-
-
 </body>
-
 <!----game logic---->
 <script type="module">
     //events
     import { key_events, Player, Enemy, Fight } from '/FIGHT_ME/modules.js'
     key_events()
-
     //creating chars
     let player = new Player()
     let enemy = new Enemy(player)
@@ -67,9 +52,5 @@
         ///play fade animation
         document.getElementsByTagName('canvas')[0].classList.remove('invisible')
     }
-
-
 </script>
-
-
 </html>
