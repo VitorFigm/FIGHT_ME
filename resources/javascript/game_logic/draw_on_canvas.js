@@ -135,9 +135,9 @@ export function canvas_draw(character1, character2, canvas_id, groundY) {
 ///units convertion
 ///convert to pixel
 function vw_px(x) {  ///view width to pixel
-    return (x / 100) * window.my_width
+    return (x / 100) * window.image_definition_x
 }
 function vh_px(x) { ///view width to pixel
-    return (x / 100) * window.my_height
+    return (x / 100) * window.image_definition_y
 }
 
