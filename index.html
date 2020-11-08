@@ -15,25 +15,46 @@
         const menu_audio = new Audio("resources/audios/musics/makai-symphony-endless-storm.mp3")
 
         window.onload = () => {
-            document.getElementsByTagName('body')[0].style.display = 'flex'
+            const body = document.getElementsByTagName('body')[0]
+            show_body_after_page_load()
+
+            function show_body_after_page_load(){
+                body.classList.add("visible")
+            }
         }
         function start() {
-            document.getElementById('start_btn').style.display = "none"
+            const start_btn = document.getElementById('start_btn')
+            start_btn.style.display = "none"
             menu_audio.play()
-            document.getElementById('menu_container').style.display = 'flex'
+            show_menu()
+            
+            function show_menu(){
+                const menu_container = document.getElementById('menu_container')
+                menu_container.classList.add("visible")
+            }
         }
 
-        function tutorial_control() {
-            let tutorial = document.getElementById('tutorial')
-            let menu = document.getElementById('first_page')
-            if (!tutorial.classList.contains('visible') ) {
+        function tutorial_show_hide(){
+            const tutorial = document.getElementById('tutorial')
+            const menu = document.getElementById('first_page')
+            const tutorial_is_not_visible = !tutorial.classList.contains('visible')
+            if (tutorial_is_not_visible) {
+                show_tutorial()
+            } else {
+                hide_tutorial()
+            }
+
+            function show_tutorial(){
                 tutorial.classList.add('visible')
                 menu.classList.remove('visible')
-            } else {
+            }
+
+            function hide_tutorial(){
                 tutorial.classList.remove('visible')
                 menu.classList.add('visible')
             }
         }
+
     </script>
 
     <a onclick="start()" id="start_btn">CLICK HERE TO START THE GAME</a>
@@ -46,14 +67,14 @@
 
             <div id="first_page" class="visible">
                 <a href="game.html">START</a>
-                <a onclick="tutorial_control()">HOW TO PLAY</a>
-                <a href="https://github.com/VitorFigm">MY GITHUB PAGE</a>
+                <a onclick="tutorial_show_hide()">HOW TO PLAY</a>
+                <a href="https://github.com/VitorFigm" target="_blank" rel="noopener noreferrer" >MY GITHUB PAGE</a>
             </div>
 
 
             <div id="tutorial">
                 <img src="resources/tutorial.svg">
-                <a onclick="tutorial_control()">CLOSE TUTORIAL</a>
+                <a onclick="tutorial_show_hide()">CLOSE TUTORIAL</a>
             </div>
 
 

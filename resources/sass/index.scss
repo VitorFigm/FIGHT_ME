@@ -9,7 +9,7 @@
 $lightYellow:#F5F4C8;
 
 body{
-    display: none;
+    display: flex;
     align-items: center;
     justify-content: center;
     margin:0px;
@@ -21,6 +21,10 @@ body{
     font-size: 14pt;
     color:white;
     text-shadow: -0.1rem -0.2rem 0.2rem;
+    transition: all;
+    &:not(.visible){
+        visibility: hidden;
+    }
 }
 a{
     font-size: 1rem;
@@ -39,19 +43,19 @@ a{
 }
 
 #menu_container{
-    display: none;
+    display: flex;
+    visibility: visible;
     position: absolute;
     width: 100vw;
     height: 100vh;
     align-items: center;
     justify-content: center;
-    animation: body_animation 5s ease-in-out;
     overflow: hidden;
     flex-direction: column;
-    @keyframes body_animation{
-        0%{
-            opacity: 0;
-        }
+    transition: all 5s;
+    &:not(.visible){
+        visibility: hidden;
+        opacity: 0;
     }
     #title{
         color:$lightYellow;
