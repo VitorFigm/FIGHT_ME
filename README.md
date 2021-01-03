@@ -1,6 +1,6 @@
 # FIGHT_ME
 
-A fighting game made only with vanilla javascript
+An old project of mine. A pretty fighting game with fluids animations.
 
 ### [Click here to play](https://vitorfigm.github.io/FIGHT_ME/)
 
