@@ -13,7 +13,7 @@ I used Adobe Animate to do those 2D character animations
 ![alt text](https://i.imgur.com/sJr7sDF.png)
 ![alt text](https://i.imgur.com/6VeIItm.png)
 
-## [Click here to play](https://vitorfigm.github.io/)
+## [Click here to play](https://vitorfigm.github.io/FIGHT_ME/)
 
 # Sounds
 Sound effect taken from https://freesound.org/, credits to thefsoundman and plucinskicasey.
