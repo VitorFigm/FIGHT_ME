@@ -1,6 +1,6 @@
-import {Character} from process.env.BASE_URL+'/modules.js'
+import {Character} from '/FIGHT_ME/modules.js'
 
-import {keyboard} from process.env.BASE_URL+'/modules.js'
+import {keyboard} from '/FIGHT_ME/modules.js'
 
 
 export class Player extends Character{

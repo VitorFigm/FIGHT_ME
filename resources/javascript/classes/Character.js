@@ -1,4 +1,4 @@
-import {defaultActions} from process.env.BASE_URL+'/modules.js'
+import {defaultActions} from '/FIGHT_ME/modules.js'
 const allActionPaterns = {
     'default':defaultActions
 }
