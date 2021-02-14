@@ -1,4 +1,4 @@
-import {default_loading_all_sprites} from '/modules.js'
+import {default_loading_all_sprites} from (process.env.BASE_URL+'/modules.js')
 
 export const defaultActions ={
     name:"Default",

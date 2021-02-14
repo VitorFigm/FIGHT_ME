@@ -1,6 +1,6 @@
-import {Character} from '/modules.js'
+import {Character} from (process.env.BASE_URL+'/modules.js')
 
-import {keyboard} from '/modules.js'
+import {keyboard} from (process.env.BASE_URL+'/modules.js')
 
 
 export class Player extends Character{

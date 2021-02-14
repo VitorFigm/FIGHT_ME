@@ -1,4 +1,4 @@
-import { Character } from '/modules.js'
+import { Character } from (process.env.BASE_URL+'/modules.js')
 
 export class Enemy extends Character {
     frame_count = 0

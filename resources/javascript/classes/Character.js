@@ -1,4 +1,4 @@
-import {defaultActions} from '/modules.js'
+import {defaultActions} from (process.env.BASE_URL+'/modules.js')
 const allActionPaterns = {
     'default':defaultActions
 }
