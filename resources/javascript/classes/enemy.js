@@ -1,4 +1,4 @@
-import { Character } from '/FIGHT_ME/modules.js'
+import { Character } from '/modules.js'
 
 export class Enemy extends Character {
     frame_count = 0

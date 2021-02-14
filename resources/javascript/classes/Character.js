@@ -1,4 +1,4 @@
-import {defaultActions} from '/FIGHT_ME/modules.js'
+import {defaultActions} from '/modules.js'
 const allActionPaterns = {
     'default':defaultActions
 }

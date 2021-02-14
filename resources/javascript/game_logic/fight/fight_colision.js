@@ -1,4 +1,4 @@
-import {checkColision}  from '/FIGHT_ME/modules.js'
+import {checkColision}  from '/modules.js'
 export function fight_P2P_colision(player,enemy){
     const A_onTop_of_B = (ref1,ref2)=>{
         return ref1.y+ref1.height <= ref2.y 

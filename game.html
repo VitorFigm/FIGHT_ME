@@ -4,7 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FIGHT ME</title>
+    <!-- Delete this to test in local machine -->
+        <base href="/FIGHT_ME/">
+    <!--  -->
     <link rel="stylesheet" href="resources/css/game.css">
+    <script>
+        console.warn("Delete the base tag in the game.html file if you want to run the code in your local machine")
+    </script>
 </head>
 <body>
     <p>Loading</p>
@@ -14,7 +20,7 @@
         <div id="fight" class="invisible">FIGHT !!!!</div>
         <div id="result_menu" class="invisible">
             <div id="result"></div>
-            <a href="/FIGHT_ME/index.html">BACK TO MENU</a>
+            <a href="index.html">BACK TO MENU</a>
         </div>
         <script>
             let audios = {
@@ -40,7 +46,7 @@
 <!----game logic---->
 <script type="module">
     //events
-    import { key_events, Player, Enemy, Fight } from '/FIGHT_ME/modules.js'
+    import { key_events, Player, Enemy, Fight } from '/modules.js'
     key_events()
     //creating chars
     let player = new Player()

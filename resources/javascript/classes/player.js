@@ -1,6 +1,6 @@
-import {Character} from '/FIGHT_ME/modules.js'
+import {Character} from '/modules.js'
 
-import {keyboard} from '/FIGHT_ME/modules.js'
+import {keyboard} from '/modules.js'
 
 
 export class Player extends Character{

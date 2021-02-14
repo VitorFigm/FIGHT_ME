@@ -1,8 +1,8 @@
-import { fight_P2P_colision } from '/FIGHT_ME/modules.js'
-import { limitCharacter_to_arenaWidth } from '/FIGHT_ME/modules.js'
-import { canvas_draw } from '/FIGHT_ME/modules.js'
-import { velocityLogic, positionChange } from '/FIGHT_ME/modules.js'
-import { changeDirection } from '/FIGHT_ME/modules.js'
+import { fight_P2P_colision } from '/modules.js'
+import { limitCharacter_to_arenaWidth } from '/modules.js'
+import { canvas_draw } from '/modules.js'
+import { velocityLogic, positionChange } from '/modules.js'
+import { changeDirection } from '/modules.js'
 
 export class Fight {
     constructor(player, enemy, args={}) {
